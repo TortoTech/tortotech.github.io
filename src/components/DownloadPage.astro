@@ -78,6 +78,24 @@ const t = zh
     <title>{t.title}</title>
     <meta name="description" content={t.desc} />
     <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+    <script define:vars={{ base }}>
+      // 语言自动切换：优先用户手动选择（localStorage），否则按浏览器语言
+      (function () {
+        var KEY = 'torto-lang';
+        var rel = location.pathname.slice(base.length - 1); // 去掉 base 前缀，保留开头 /
+        var isEn = rel === '/en' || rel.indexOf('/en/') === 0;
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (e) {}
+        var pref = stored || ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+        if (pref === 'en' && !isEn) location.replace(base + 'en' + (rel === '/' ? '/' : rel));
+        else if (pref === 'zh' && isEn) location.replace(base + rel.replace(/^\/en\/?/, '') || base);
+        // 手动点击语言切换时记住选择
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest ? e.target.closest('a.lang-switch') : null;
+          if (a) { try { localStorage.setItem(KEY, isEn ? 'zh' : 'en'); } catch (err) {} }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <nav class="nav">
@@ -133,34 +151,65 @@ const t = zh
     </footer>
 
     <script define:vars={{ releasesUrl }}>
-      // 从 GitHub API 拉取最新 release，把下载按钮升级为指向具体安装包；
-      // 失败（限流/离线）时保持回退到 Releases 页面。
-      (async () => {
+      (function () {
         const grid = document.getElementById('dl-grid');
         if (!grid) return;
         const locale = grid.dataset.locale || 'en';
-        try {
-          const res = await fetch('https://api.github.com/repos/TortoTech/torto/releases/latest');
-          if (!res.ok) throw new Error(String(res.status));
-          const data = await res.json();
-          const tag = data.tag_name || '';
-          for (const card of grid.querySelectorAll('.dl-card')) {
-            const match = card.dataset.match;
-            const asset = (data.assets || []).find(
-              (a) => a.name && a.name.endsWith(match)
-            );
-            const versionEl = card.querySelector('.version');
-            const btn = card.querySelector('.dl-btn');
-            if (versionEl) versionEl.textContent = tag;
-            if (asset && btn) btn.href = asset.browser_download_url;
+
+        // 平台检测：高亮推荐当前平台的安装包
+        async function detectMatch() {
+          const ua = navigator.userAgent;
+          if (/Windows/i.test(ua)) return '.msi';
+          if (/Mac OS X|Macintosh/i.test(ua)) {
+            try {
+              if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+                const v = await navigator.userAgentData.getHighEntropyValues(['architecture']);
+                return v.architecture === 'arm' ? 'macos-arm64.dmg' : 'macos-x86_64.dmg';
+              }
+            } catch {}
+            return 'macos-arm64.dmg'; // 近年 Mac 以 Apple 芯片为主，无法判定时默认 arm64
           }
-        } catch {
-          for (const versionEl of grid.querySelectorAll('.version')) {
-            versionEl.textContent = releasesUrl;
-            versionEl.style.fontSize = '12px';
-            versionEl.style.wordBreak = 'break-all';
-          }
+          return null;
         }
+
+        (async () => {
+          const match = await detectMatch();
+          if (!match) return;
+          const card = grid.querySelector(`.dl-card[data-match="${match}"]`);
+          if (!card) return;
+          card.classList.add('recommended');
+          const badge = document.createElement('span');
+          badge.className = 'dl-badge';
+          badge.textContent = locale === 'zh-CN' ? '推荐下载' : 'Recommended';
+          card.prepend(badge);
+        })();
+
+        // 从 GitHub API 拉取最新 release，把下载按钮升级为指向具体安装包；
+        // 失败（限流/离线）时保持回退到 Releases 页面。
+        (async () => {
+          try {
+            const res = await fetch('https://api.github.com/repos/TortoTech/torto/releases/latest');
+            if (!res.ok) throw new Error(String(res.status));
+            const data = await res.json();
+            const tag = data.tag_name || '';
+            for (const card of grid.querySelectorAll('.dl-card')) {
+              const match = card.dataset.match;
+              const asset = (data.assets || []).find(
+                (a) => a.name && a.name.endsWith(match)
+              );
+              const versionEl = card.querySelector('.version');
+              const btn = card.querySelector('.dl-btn');
+              if (versionEl) versionEl.textContent = tag;
+              if (asset && btn) btn.href = asset.browser_download_url;
+            }
+          } catch {
+            for (const versionEl of grid.querySelectorAll('.version')) {
+              versionEl.textContent = releasesUrl;
+              versionEl.style.fontSize = '12px';
+              versionEl.style.wordBreak = 'break-all';
+            }
+          }
+        })();
       })();
     </script>
   </body>

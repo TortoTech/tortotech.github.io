@@ -334,6 +334,24 @@ img {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+}
+
+.dl-card.recommended {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 12px 36px rgba(63, 169, 124, 0.15);
+}
+
+.dl-badge {
+  position: absolute;
+  top: -11px;
+  right: 16px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 999px;
 }
 
 .dl-card h3 {
