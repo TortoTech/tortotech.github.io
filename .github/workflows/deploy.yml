@@ -17,7 +17,7 @@ concurrency:
 env:
   # 改成你的 GitHub Pages 地址与仓库名（项目页需要 base 前缀）
   SITE_URL: https://tortotech.github.io
-  BASE_PATH: /torto-site
+  BASE_PATH: /
 
 jobs:
   build:

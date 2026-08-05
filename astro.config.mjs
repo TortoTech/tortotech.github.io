@@ -3,11 +3,10 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 // GitHub Pages 部署说明：
-// - `site` 改为你的 GitHub Pages 域名，例如 'https://<username>.github.io'
-// - `base` 改为仓库名（项目页需要），例如 '/torto-site'；用户/组织主页则删掉 base
-// 两者也可通过环境变量覆盖：SITE_URL / BASE_PATH（见 .github/workflows/deploy.yml）
+// - 本仓库是组织主页仓库（tortotech.github.io），站点直接部署在根路径
+// - 若迁移到其他仓库/域名，修改 SITE_URL 与 BASE_PATH（或同名环境变量）
 const site = process.env.SITE_URL ?? 'https://tortotech.github.io';
-const base = process.env.BASE_PATH ?? '/torto-site';
+const base = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
   site,
