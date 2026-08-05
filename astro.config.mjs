@@ -6,7 +6,7 @@ import starlight from '@astrojs/starlight';
 // - `site` 改为你的 GitHub Pages 域名，例如 'https://<username>.github.io'
 // - `base` 改为仓库名（项目页需要），例如 '/torto-site'；用户/组织主页则删掉 base
 // 两者也可通过环境变量覆盖：SITE_URL / BASE_PATH（见 .github/workflows/deploy.yml）
-const site = process.env.SITE_URL ?? 'https://l-chris.github.io';
+const site = process.env.SITE_URL ?? 'https://tortotech.github.io';
 const base = process.env.BASE_PATH ?? '/torto-site';
 
 export default defineConfig({
@@ -34,7 +34,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/L-Chris/torto',
+          href: 'https://github.com/TortoTech/torto',
         },
       ],
       sidebar: [

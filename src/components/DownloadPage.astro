@@ -12,7 +12,7 @@ const zh = lang === 'zh';
 const homeHref = zh ? base : `${base}en/`;
 const docsHref = zh ? `${base}docs/` : `${base}en/docs/`;
 const langHref = zh ? `${base}en/download/` : `${base}download/`;
-const releasesUrl = 'https://github.com/L-Chris/torto/releases/latest';
+const releasesUrl = 'https://github.com/TortoTech/torto/releases/latest';
 
 const t = zh
   ? {
@@ -88,7 +88,7 @@ const t = zh
         </a>
         <div class="nav-links">
           <a href={docsHref}>{t.navDocs}</a>
-          <a href="https://github.com/L-Chris/torto">GitHub</a>
+          <a href="https://github.com/TortoTech/torto">GitHub</a>
           <a class="lang-switch" href={langHref}>{t.langLabel}</a>
         </div>
       </div>
@@ -128,7 +128,7 @@ const t = zh
     <footer class="footer">
       <div class="wrap footer-inner">
         <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
-        <span class="right"><a href="https://github.com/L-Chris/torto">github.com/L-Chris/torto</a></span>
+        <span class="right"><a href="https://github.com/TortoTech/torto">github.com/TortoTech/torto</a></span>
       </div>
     </footer>
 
@@ -140,7 +140,7 @@ const t = zh
         if (!grid) return;
         const locale = grid.dataset.locale || 'en';
         try {
-          const res = await fetch('https://api.github.com/repos/L-Chris/torto/releases/latest');
+          const res = await fetch('https://api.github.com/repos/TortoTech/torto/releases/latest');
           if (!res.ok) throw new Error(String(res.status));
           const data = await res.json();
           const tag = data.tag_name || '';
