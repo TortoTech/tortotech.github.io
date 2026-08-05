@@ -26,10 +26,16 @@ A popular choice in China with stable access. The free tier limits WebDAV traffi
 
 ### Get an App Password
 
-1. Open [jianguoyun.com](https://www.jianguoyun.com/) and log in (the web version is enough).
-2. Click your account name (top right) → **「账户信息」 (Account Info)** → **「安全选项」 (Security)**.
-3. Under **「第三方应用管理」 (Third-party Apps)**, click **「添加应用」 (Add App)**, enter a name such as `Torto`, and click **「生成密码」 (Generate Password)**.
+Since late 2025, Jianguoyun's new web version has removed the app-password management entry for many accounts — you need the **client app** to generate one:
+
+1. Download and install a Jianguoyun client ([official download page](https://www.jianguoyun.com/s/downloads) — mobile app or desktop client both work) and sign in.
+2. On the mobile app, for example: go to **「我的」(Me) →「设置」(Settings) →「第三方应用管理」(Third-party Apps)**.
+3. Tap **「添加应用密码」(Add App Password)**, enter a name such as `Torto`, and tap **「生成密码」(Generate)**.
 4. Note the server address (`https://dav.jianguoyun.com/dav`), your account (registered email) and the generated **app password**.
+
+:::tip[Web version]
+Some accounts can still do this on the web: click your account name (top right) →「账户信息」→「安全选项」→「第三方应用管理」. If the entry is missing, click your username in the top-right corner and **switch back to the old web version**, then look again.
+:::
 
 ### Configure in Torto
 

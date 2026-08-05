@@ -7,7 +7,7 @@ Torto's **PDF OCR / Reflow** feature turns a scanned PDF into reflowable, search
 
 | Provider | Highlights | What you enter in Torto |
 | --- | --- | --- |
-| **PaddleOCR** (default) | Official Baidu PaddlePaddle service with a free daily quota on AI Studio | API URL, Access Token |
+| **PaddleOCR** (default) | Official Baidu PaddlePaddle service with a free daily quota on AI Studio | Access Token |
 | **MinerU** | Document parsing by OpenDataLab, great on complex layouts | API Token |
 
 Open **Settings → OCR** in Torto to pick a provider and enter credentials. Tokens are stored in your OS credential manager, never in config files.
@@ -20,14 +20,12 @@ PaddleOCR's cloud service is hosted on [PaddlePaddle AI Studio](https://aistudio
 
 1. Open the [PaddleOCR task page on AI Studio](https://aistudio.baidu.com/paddleocr/task) and sign in with a Baidu account (register one first if needed).
 2. Click the **「API」** button in the top-left corner of the page.
-3. In the API usage example, find **PaddleOCR-VL** and copy two values:
-   - **API_URL** — your personal endpoint, e.g. `https://xxxxxxxx.aistudio-app.com/...`
-   - **TOKEN** — a 40-character hexadecimal access token.
+3. In the API usage example, find **PaddleOCR-VL** and copy the **TOKEN** — a 40-character hexadecimal access token. (The page also shows a personal API_URL; Torto has the service address built in, so you don't need it.)
 
 ### Configure in Torto
 
 1. Go to **Settings → OCR** and select **PaddleOCR**.
-2. Paste the **API_URL** into "API URL" (or keep the built-in default) and the **TOKEN** into "Access Token".
+2. Paste the **TOKEN** into "Access Token".
 3. Pick a model — `PaddleOCR-VL-1.6` is the default; `PaddleOCR-VL-1.5` and `PaddleOCR-VL` are also available.
 4. Open any scanned PDF and run OCR. Results are cached locally, and you can switch between the Original and Reflow views.
 
@@ -52,9 +50,8 @@ MinerU API tokens expire (check the notice on the platform). When a token expire
 ### Configure in Torto
 
 1. Go to **Settings → OCR** and select **MinerU**.
-2. Keep the default API URL `https://mineru.net/api/v4` (or point it at your self-hosted service).
-3. Paste the token into "API Token".
-4. Pick a model: `vlm` (default, better quality) or `pipeline` (faster).
+2. Paste the token into "API Token" (the API address is built in — nothing else to fill in).
+3. Pick a model: `vlm` (default, better quality) or `pipeline` (faster).
 
 ## FAQ
 
@@ -63,6 +60,3 @@ Check that the token is correct and unexpired. For PaddleOCR, confirm you haven'
 
 **Where are results stored?**
 OCR output is cached locally per page — the same book never consumes quota twice, and switching between Original/Reflow views makes no new requests.
-
-**Can I self-host an OCR service?**
-Yes. Both providers support self-hosting: just change the API URL in Torto to your own endpoint (for a self-hosted MinerU, any placeholder works as the token).
