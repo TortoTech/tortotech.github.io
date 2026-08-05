@@ -1,0 +1,17 @@
+{
+  "name": "torto-site",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Official website for Torto (小龟阅读) — a local-first native ebook reader",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.6",
+    "astro": "^7.1.6",
+    "sharp": "^0.35.3"
+  }
+}

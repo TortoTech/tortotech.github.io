@@ -1,0 +1,165 @@
+---
+import '../styles/landing.css';
+
+interface Props {
+  lang: 'zh' | 'en';
+}
+
+const { lang } = Astro.props;
+// 统一为以 / 结尾，便于直接拼接子路径
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const zh = lang === 'zh';
+const homeHref = zh ? base : `${base}en/`;
+const docsHref = zh ? `${base}docs/` : `${base}en/docs/`;
+const downloadHref = zh ? `${base}download/` : `${base}en/download/`;
+const langHref = zh ? `${base}en/` : base;
+
+const t = zh
+  ? {
+      title: 'Torto 小龟阅读 — 专注、本地优先的原生电子书阅读器',
+      desc: 'Torto（小龟阅读）是一款 Windows 与 macOS 上的原生电子书阅读器：纯 Rust 渲染、无 WebView，支持 EPUB/MOBI/AZW3/PDF 等格式，内置 AI 助手、翻译、PDF OCR 与 WebDAV 云同步。',
+      navDocs: '使用文档',
+      navDownload: '下载',
+      langLabel: 'EN',
+      badge: '开源免费 · Windows & macOS',
+      h1: '小龟阅读 Torto',
+      lead: '专注、本地优先的原生电子书阅读器。纯 Rust 渲染管线，无 WebView，轻快、省电、保护隐私。',
+      ctaDownload: '立即下载',
+      ctaDocs: '查看使用文档',
+      shotsLibrary: '书库管理 — 批量导入、元数据与封面、去重检测',
+      shotsReader: '阅读界面 — 双页模式、Glass 主题、划线笔记',
+      featTitle: '功能特性',
+      featSub: '为长时间专注阅读而设计，本地优先，数据始终在你手里。',
+      features: [
+        { icon: '📚', title: '多格式支持', text: 'EPUB、MOBI、AZW/AZW3、FB2、CBZ、PDF，无 DRM 限制。' },
+        { icon: '⚡', title: '原生 Rust 渲染', text: '解析 → 排版 → GPU 渲染全自研管线，无浏览器内核，翻页 O(1) 缓存。' },
+        { icon: '📖', title: '页式与滚动模式', text: '单页、双页、按章垂直滚动，键盘与滚轮翻页，F11 全屏。' },
+        { icon: '🎨', title: '排版与主题', text: '自定义字体、字号、字重，浅色 / 深色 / Glass 主题随心切换。' },
+        { icon: '✍️', title: '标注与笔记', text: '词句段选择、划线高亮、想法笔记，源位置持久化不丢失。' },
+        { icon: '🤖', title: 'AI 阅读助手', text: '就当前书籍对话，回答附带原文出处；支持 Markdown / 数学公式 / Mermaid。' },
+        { icon: '🌐', title: 'AI 翻译', text: '替换或双语对照模式，连目录也能一键翻译。' },
+        { icon: '📄', title: 'PDF OCR 重排', text: '扫描版 PDF 全文 OCR 为可重排文本，支持 PaddleOCR 与 MinerU。' },
+        { icon: '☁️', title: 'WebDAV 云同步', text: '书籍、阅读进度、划线与笔记跨设备同步，支持坚果云、InfiniCLOUD、Koofr 等。' },
+      ],
+      bannerH2: '准备好开始阅读了吗？',
+      bannerP: '免费下载 Torto，支持 Windows 10/11 与 macOS 12+。',
+      footerCopy: '© {year} Torto 小龟阅读 · MIT License',
+      footerDocs: '文档',
+      footerReleases: '更新日志',
+    }
+  : {
+      title: 'Torto — A focused, local-first native ebook reader',
+      desc: 'Torto is a native ebook reader for Windows and macOS: pure Rust rendering with no WebView, supporting EPUB/MOBI/AZW3/PDF, with AI assistant, translation, PDF OCR and WebDAV sync.',
+      navDocs: 'Docs',
+      navDownload: 'Download',
+      langLabel: '中文',
+      badge: 'Free & Open Source · Windows & macOS',
+      h1: 'Torto Reader',
+      lead: 'A focused, local-first ebook reader. A pure Rust rendering pipeline with no WebView — fast, light, and private.',
+      ctaDownload: 'Download Now',
+      ctaDocs: 'Read the Docs',
+      shotsLibrary: 'Library — bulk import, metadata & covers, duplicate detection',
+      shotsReader: 'Reader — two-page mode, Glass theme, highlights',
+      featTitle: 'Features',
+      featSub: 'Designed for long, focused reading. Local-first: your data stays with you.',
+      features: [
+        { icon: '📚', title: 'Multi-format', text: 'EPUB, MOBI, AZW/AZW3, FB2, CBZ and PDF. No DRM restrictions.' },
+        { icon: '⚡', title: 'Native Rust Rendering', text: 'A self-built parse → layout → GPU pipeline. No browser engine, O(1) page turns.' },
+        { icon: '📖', title: 'Page & Scroll Modes', text: 'Single page, two-page, or chapter-based vertical scroll. Keyboard, wheel, F11 fullscreen.' },
+        { icon: '🎨', title: 'Typography & Themes', text: 'Custom fonts, sizes and weights, with Light, Dark and Glass themes.' },
+        { icon: '✍️', title: 'Highlights & Notes', text: 'Word/sentence/paragraph selection with durable source locations.' },
+        { icon: '🤖', title: 'AI Reading Assistant', text: 'Chat about the current book with source-backed citations. Markdown, math and Mermaid.' },
+        { icon: '🌐', title: 'AI Translation', text: 'Replace or bilingual mode — even the table of contents can be translated.' },
+        { icon: '📄', title: 'PDF OCR & Reflow', text: 'Turn scanned PDFs into reflowable text with PaddleOCR or MinerU.' },
+        { icon: '☁️', title: 'WebDAV Sync', text: 'Sync books, progress, highlights and notes via Jianguoyun, InfiniCLOUD, Koofr and more.' },
+      ],
+      bannerH2: 'Ready to start reading?',
+      bannerP: 'Download Torto for free. Windows 10/11 and macOS 12+ supported.',
+      footerCopy: '© {year} Torto · MIT License',
+      footerDocs: 'Docs',
+      footerReleases: 'Changelog',
+    };
+---
+
+<html lang={zh ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.desc} />
+    <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href={homeHref}>
+          <img src={`${base}images/logo.png`} alt="Torto" />
+          <span>Torto</span>
+        </a>
+        <div class="nav-links">
+          <a href={docsHref}>{t.navDocs}</a>
+          <a href="https://github.com/L-Chris/torto">GitHub</a>
+          <a class="lang-switch" href={langHref}>{t.langLabel}</a>
+          <a class="nav-cta" href={downloadHref}>{t.navDownload}</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <img class="hero-logo" src={`${base}images/logo.png`} alt="Torto logo" />
+        <span class="badge">{t.badge}</span>
+        <h1>{t.h1}</h1>
+        <p class="lead">{t.lead}</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href={downloadHref}>{t.ctaDownload}</a>
+          <a class="btn btn-ghost" href={docsHref}>{t.ctaDocs}</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="screenshots wrap">
+      <div class="shot-grid">
+        <figure>
+          <img src={`${base}images/library.png`} alt={t.shotsLibrary} loading="lazy" />
+          <figcaption>{t.shotsLibrary}</figcaption>
+        </figure>
+        <figure>
+          <img src={`${base}images/reader.png`} alt={t.shotsReader} loading="lazy" />
+          <figcaption>{t.shotsReader}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section wrap" id="features">
+      <h2>{t.featTitle}</h2>
+      <p class="sub">{t.featSub}</p>
+      <div class="feature-grid">
+        {t.features.map((f) => (
+          <div class="card">
+            <div class="icon">{f.icon}</div>
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="banner">
+        <h2>{t.bannerH2}</h2>
+        <p>{t.bannerP}</p>
+        <a class="btn btn-primary" href={downloadHref}>{t.ctaDownload}</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
+        <a href={docsHref}>{t.footerDocs}</a>
+        <a href="https://github.com/L-Chris/torto/releases">{t.footerReleases}</a>
+        <span class="right"><a href="https://github.com/L-Chris/torto">github.com/L-Chris/torto</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

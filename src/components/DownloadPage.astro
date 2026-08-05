@@ -1,0 +1,167 @@
+---
+import '../styles/landing.css';
+
+interface Props {
+  lang: 'zh' | 'en';
+}
+
+const { lang } = Astro.props;
+// 统一为以 / 结尾，便于直接拼接子路径
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const zh = lang === 'zh';
+const homeHref = zh ? base : `${base}en/`;
+const docsHref = zh ? `${base}docs/` : `${base}en/docs/`;
+const langHref = zh ? `${base}en/download/` : `${base}download/`;
+const releasesUrl = 'https://github.com/L-Chris/torto/releases/latest';
+
+const t = zh
+  ? {
+      title: '下载 Torto 小龟阅读',
+      desc: '下载 Torto（小龟阅读）Windows MSI 与 macOS DMG 安装包。',
+      navDocs: '使用文档',
+      langLabel: 'EN',
+      h1: '下载 Torto',
+      sub: '全部安装包均发布于 GitHub Releases，点击按钮即可获取最新版本。',
+      versionLoading: '正在获取最新版本…',
+      versionFallback: '前往 GitHub Releases 下载最新版本',
+      platforms: [
+        { name: 'Windows', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi' },
+        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M 系列芯片 · DMG', match: 'macos-arm64.dmg' },
+        { name: 'macOS（Intel）', hint: 'macOS 12+ · Intel 芯片 · DMG', match: 'macos-x86_64.dmg' },
+      ],
+      dlBtn: '下载',
+      notesTitle: '安装说明',
+      notes: [
+        'Windows：首次运行 MSI 可能出现 SmartScreen 提示，选择「仍要运行」即可；安装后支持自动更新（SHA-256 校验）。',
+        'macOS：DMG 为 ad-hoc 签名，首次打开请在「访达」中右键 →「打开」，或在 系统设置 → 隐私与安全性 中允许运行。',
+        '每个 DMG 均附带 .sha256 校验文件，可用于核对下载完整性。',
+      ],
+      ocrTip: '安装完成后，如需 PDF OCR 或云同步，请查阅',
+      ocrLink1: 'OCR 服务商配置',
+      ocrLink2: '云盘服务商配置',
+      andText: '与',
+      footerCopy: '© {year} Torto 小龟阅读 · MIT License',
+    }
+  : {
+      title: 'Download Torto',
+      desc: 'Download Torto for Windows (MSI) and macOS (DMG).',
+      navDocs: 'Docs',
+      langLabel: '中文',
+      h1: 'Download Torto',
+      sub: 'All installers are published on GitHub Releases — the buttons below always fetch the latest version.',
+      versionLoading: 'Fetching the latest release…',
+      versionFallback: 'Get the latest version on GitHub Releases',
+      platforms: [
+        { name: 'Windows', hint: 'Windows 10 / 11 (64-bit) · MSI installer', match: '.msi' },
+        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M-series · DMG', match: 'macos-arm64.dmg' },
+        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel · DMG', match: 'macos-x86_64.dmg' },
+      ],
+      dlBtn: 'Download',
+      notesTitle: 'Installation Notes',
+      notes: [
+        'Windows: SmartScreen may warn on first run — choose "Run anyway". Built-in auto-update with SHA-256 verification.',
+        'macOS: the DMG is ad-hoc signed. On first launch, right-click → "Open" in Finder, or allow it in System Settings → Privacy & Security.',
+        'Each DMG ships with a .sha256 file so you can verify download integrity.',
+      ],
+      ocrTip: 'After installing, see the setup guides for PDF OCR and cloud sync:',
+      ocrLink1: 'OCR Providers',
+      ocrLink2: 'Cloud Storage Providers',
+      andText: 'and',
+      footerCopy: '© {year} Torto · MIT License',
+    };
+---
+
+<html lang={zh ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.desc} />
+    <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href={homeHref}>
+          <img src={`${base}images/logo.png`} alt="Torto" />
+          <span>Torto</span>
+        </a>
+        <div class="nav-links">
+          <a href={docsHref}>{t.navDocs}</a>
+          <a href="https://github.com/L-Chris/torto">GitHub</a>
+          <a class="lang-switch" href={langHref}>{t.langLabel}</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="section wrap">
+      <h1>{t.h1}</h1>
+      <p class="sub">{t.sub}</p>
+
+      <div class="dl-grid" id="dl-grid" data-locale={zh ? 'zh-CN' : 'en'}>
+        {t.platforms.map((p) => (
+          <div class="dl-card" data-match={p.match}>
+            <h3>{p.name}</h3>
+            <div class="meta">{p.hint}</div>
+            <div class="meta version">{t.versionLoading}</div>
+            <a class="btn btn-primary dl-btn" href={releasesUrl} target="_blank" rel="noopener">
+              {t.dlBtn}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="dl-notes">
+        <h3>{t.notesTitle}</h3>
+        <ul>
+          {t.notes.map((n) => <li>{n}</li>)}
+        </ul>
+        <p style="margin:14px 0 0;color:var(--text-dim);font-size:14.5px">
+          {t.ocrTip}
+          <a href={zh ? `${base}guides/ocr-providers/` : `${base}en/guides/ocr-providers/`}>{t.ocrLink1}</a>
+          {' '}{t.andText}{' '}
+          <a href={zh ? `${base}guides/cloud-storage/` : `${base}en/guides/cloud-storage/`}>{t.ocrLink2}</a>。
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
+        <span class="right"><a href="https://github.com/L-Chris/torto">github.com/L-Chris/torto</a></span>
+      </div>
+    </footer>
+
+    <script define:vars={{ releasesUrl }}>
+      // 从 GitHub API 拉取最新 release，把下载按钮升级为指向具体安装包；
+      // 失败（限流/离线）时保持回退到 Releases 页面。
+      (async () => {
+        const grid = document.getElementById('dl-grid');
+        if (!grid) return;
+        const locale = grid.dataset.locale || 'en';
+        try {
+          const res = await fetch('https://api.github.com/repos/L-Chris/torto/releases/latest');
+          if (!res.ok) throw new Error(String(res.status));
+          const data = await res.json();
+          const tag = data.tag_name || '';
+          for (const card of grid.querySelectorAll('.dl-card')) {
+            const match = card.dataset.match;
+            const asset = (data.assets || []).find(
+              (a) => a.name && a.name.endsWith(match)
+            );
+            const versionEl = card.querySelector('.version');
+            const btn = card.querySelector('.dl-btn');
+            if (versionEl) versionEl.textContent = tag;
+            if (asset && btn) btn.href = asset.browser_download_url;
+          }
+        } catch {
+          for (const versionEl of grid.querySelectorAll('.version')) {
+            versionEl.textContent = releasesUrl;
+            versionEl.style.fontSize = '12px';
+            versionEl.style.wordBreak = 'break-all';
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
