@@ -18,7 +18,7 @@ Torto syncs your library, reading progress, highlights and notes across devices 
 Except for STRATO HiDrive, always use an app-specific password instead of your login password. Torto stores passwords in the OS credential manager — never in config files.
 :::
 
-In Torto, open **Settings → Cloud Sync**, enable it, pick a provider and enter your credentials. You can also set a device name and sync interval (10 / 30 / 60 / 180 minutes).
+In Torto, open **Settings → Cloud Sync**, enable it, pick a provider and enter your credentials. You can also set a device name to tell devices apart.
 
 ## Jianguoyun (坚果云)
 
