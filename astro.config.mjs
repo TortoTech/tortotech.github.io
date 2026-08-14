@@ -51,6 +51,11 @@ export default defineConfig({
               translations: { en: 'Cloud Storage Providers' },
               slug: 'guides/cloud-storage',
             },
+            {
+              label: '专注模式',
+              translations: { en: 'Focus Mode' },
+              slug: 'guides/focus-mode',
+            },
           ],
         },
       ],
