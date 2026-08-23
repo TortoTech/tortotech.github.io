@@ -18,7 +18,7 @@ export default defineConfig({
         en: 'Torto Reader',
       },
       description:
-        'A focused, local-first ebook reader for Windows and macOS.',
+        'A local-first ebook reader built around Focus Mode for Windows, macOS and Android.',
       logo: {
         src: './public/images/logo.png',
         alt: 'Torto',

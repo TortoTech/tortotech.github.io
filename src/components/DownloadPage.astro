@@ -12,22 +12,24 @@ const zh = lang === 'zh';
 const homeHref = zh ? base : `${base}en/`;
 const docsHref = zh ? `${base}docs/` : `${base}en/docs/`;
 const langHref = zh ? `${base}en/download/` : `${base}download/`;
-const releasesUrl = 'https://github.com/TortoTech/torto/releases/latest';
+const desktopReleasesUrl = 'https://github.com/TortoTech/torto/releases/latest';
+const mobileReleasesUrl = 'https://github.com/TortoTech/torto-app/releases/latest';
 
 const t = zh
   ? {
       title: '下载 Torto 小龟阅读',
-      desc: '下载 Torto（小龟阅读）Windows MSI 与 macOS DMG 安装包。',
+      desc: '下载 Torto（小龟阅读）的 Windows MSI、macOS DMG 与 Android APK。',
       navDocs: '使用文档',
       langLabel: 'EN',
       h1: '下载 Torto',
-      sub: '全部安装包均发布于 GitHub Releases，点击按钮即可获取最新版本。',
+      sub: '桌面端与 Android 安装包均发布于 GitHub Releases，点击按钮即可获取对应平台的最新版本。',
       versionLoading: '正在获取最新版本…',
       versionFallback: '前往 GitHub Releases 下载最新版本',
       platforms: [
-        { name: 'Windows', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi' },
-        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M 系列芯片 · DMG', match: 'macos-arm64.dmg' },
-        { name: 'macOS（Intel）', hint: 'macOS 12+ · Intel 芯片 · DMG', match: 'macos-x86_64.dmg' },
+        { name: 'Windows', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M 系列芯片 · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Intel）', hint: 'macOS 12+ · Intel 芯片 · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'Android', hint: 'Android 7.0+ · ARM64 APK（大多数手机）', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
       dlBtn: '下载',
       notesTitle: '安装说明',
@@ -35,26 +37,29 @@ const t = zh
         'Windows：首次运行 MSI 可能出现 SmartScreen 提示，选择「仍要运行」即可；安装后支持自动更新（SHA-256 校验）。',
         'macOS：DMG 为 ad-hoc 签名，首次打开请在「访达」中右键 →「打开」，或在 系统设置 → 隐私与安全性 中允许运行。',
         '每个 DMG 均附带 .sha256 校验文件，可用于核对下载完整性。',
+        'Android：当前为 0.1 系列早期版本。大多数手机请选择 arm64-v8a；旧式 32 位设备与模拟器可在移动端 Releases 页面下载其他架构。',
       ],
-      ocrTip: '安装完成后，如需 PDF OCR 或云同步，请查阅',
+      ocrTip: '安装完成后，可查阅桌面端 PDF OCR 与跨设备云同步配置：',
       ocrLink1: 'OCR 服务商配置',
       ocrLink2: '云盘服务商配置',
       andText: '与',
+      sentenceEnd: '。',
       footerCopy: '© {year} Torto 小龟阅读 · MIT License',
     }
   : {
       title: 'Download Torto',
-      desc: 'Download Torto for Windows (MSI) and macOS (DMG).',
+      desc: 'Download Torto for Windows (MSI), macOS (DMG) and Android (APK).',
       navDocs: 'Docs',
       langLabel: '中文',
       h1: 'Download Torto',
-      sub: 'All installers are published on GitHub Releases — the buttons below always fetch the latest version.',
+      sub: 'Desktop and Android installers are published on GitHub Releases. Each button fetches the latest build for that platform.',
       versionLoading: 'Fetching the latest release…',
       versionFallback: 'Get the latest version on GitHub Releases',
       platforms: [
-        { name: 'Windows', hint: 'Windows 10 / 11 (64-bit) · MSI installer', match: '.msi' },
-        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M-series · DMG', match: 'macos-arm64.dmg' },
-        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel · DMG', match: 'macos-x86_64.dmg' },
+        { name: 'Windows', hint: 'Windows 10 / 11 (64-bit) · MSI installer', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M-series · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'Android', hint: 'Android 7.0+ · ARM64 APK (most phones)', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
       dlBtn: 'Download',
       notesTitle: 'Installation Notes',
@@ -62,11 +67,13 @@ const t = zh
         'Windows: SmartScreen may warn on first run — choose "Run anyway". Built-in auto-update with SHA-256 verification.',
         'macOS: the DMG is ad-hoc signed. On first launch, right-click → "Open" in Finder, or allow it in System Settings → Privacy & Security.',
         'Each DMG ships with a .sha256 file so you can verify download integrity.',
+        'Android: the current 0.1 series is an early release. Choose arm64-v8a for most phones; 32-bit devices and emulators can use the other APK variants on the mobile Releases page.',
       ],
-      ocrTip: 'After installing, see the setup guides for PDF OCR and cloud sync:',
+      ocrTip: 'After installing, see the guides for desktop PDF OCR and cross-device cloud sync:',
       ocrLink1: 'OCR Providers',
       ocrLink2: 'Cloud Storage Providers',
       andText: 'and',
+      sentenceEnd: '.',
       footerCopy: '© {year} Torto · MIT License',
     };
 ---
@@ -118,11 +125,11 @@ const t = zh
 
       <div class="dl-grid" id="dl-grid" data-locale={zh ? 'zh-CN' : 'en'}>
         {t.platforms.map((p) => (
-          <div class="dl-card" data-match={p.match}>
+          <div class="dl-card" data-match={p.match} data-source={p.source}>
             <h3>{p.name}</h3>
             <div class="meta">{p.hint}</div>
             <div class="meta version">{t.versionLoading}</div>
-            <a class="btn btn-primary dl-btn" href={releasesUrl} target="_blank" rel="noopener">
+            <a class="btn btn-primary dl-btn" href={p.releasesUrl} target="_blank" rel="noopener">
               {t.dlBtn}
             </a>
           </div>
@@ -135,10 +142,10 @@ const t = zh
           {t.notes.map((n) => <li>{n}</li>)}
         </ul>
         <p style="margin:14px 0 0;color:var(--text-dim);font-size:14.5px">
-          {t.ocrTip}
+          {t.ocrTip}{' '}
           <a href={zh ? `${base}guides/ocr-providers/` : `${base}en/guides/ocr-providers/`}>{t.ocrLink1}</a>
           {' '}{t.andText}{' '}
-          <a href={zh ? `${base}guides/cloud-storage/` : `${base}en/guides/cloud-storage/`}>{t.ocrLink2}</a>。
+          <a href={zh ? `${base}guides/cloud-storage/` : `${base}en/guides/cloud-storage/`}>{t.ocrLink2}</a>{t.sentenceEnd}
         </p>
       </div>
     </main>
@@ -146,11 +153,11 @@ const t = zh
     <footer class="footer">
       <div class="wrap footer-inner">
         <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
-        <span class="right"><a href="https://github.com/TortoTech/torto">github.com/TortoTech/torto</a></span>
+        <span class="right"><a href="https://github.com/TortoTech">github.com/TortoTech</a></span>
       </div>
     </footer>
 
-    <script define:vars={{ releasesUrl }}>
+    <script define:vars={{ desktopReleasesUrl, mobileReleasesUrl }}>
       (function () {
         const grid = document.getElementById('dl-grid');
         if (!grid) return;
@@ -159,15 +166,16 @@ const t = zh
         // 平台检测：高亮推荐当前平台的安装包
         async function detectMatch() {
           const ua = navigator.userAgent;
-          if (/Windows/i.test(ua)) return '.msi';
+          if (/Android/i.test(ua)) return { source: 'mobile', match: 'android-arm64-v8a.apk' };
+          if (/Windows/i.test(ua)) return { source: 'desktop', match: '.msi' };
           if (/Mac OS X|Macintosh/i.test(ua)) {
             try {
               if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
                 const v = await navigator.userAgentData.getHighEntropyValues(['architecture']);
-                return v.architecture === 'arm' ? 'macos-arm64.dmg' : 'macos-x86_64.dmg';
+                return { source: 'desktop', match: v.architecture === 'arm' ? 'macos-arm64.dmg' : 'macos-x86_64.dmg' };
               }
             } catch {}
-            return 'macos-arm64.dmg'; // 近年 Mac 以 Apple 芯片为主，无法判定时默认 arm64
+            return { source: 'desktop', match: 'macos-arm64.dmg' }; // 近年 Mac 以 Apple 芯片为主，无法判定时默认 arm64
           }
           return null;
         }
@@ -175,7 +183,7 @@ const t = zh
         (async () => {
           const match = await detectMatch();
           if (!match) return;
-          const card = grid.querySelector(`.dl-card[data-match="${match}"]`);
+          const card = grid.querySelector(`.dl-card[data-source="${match.source}"][data-match="${match.match}"]`);
           if (!card) return;
           card.classList.add('recommended');
           const badge = document.createElement('span');
@@ -184,27 +192,54 @@ const t = zh
           card.prepend(badge);
         })();
 
-        // 从 GitHub API 拉取最新 release，把下载按钮升级为指向具体安装包；
+        // 分别从桌面端与移动端 GitHub API 拉取最新 release，把下载按钮升级为具体安装包；
         // 失败（限流/离线）时保持回退到 Releases 页面。
         (async () => {
           try {
-            const res = await fetch('https://api.github.com/repos/TortoTech/torto/releases/latest');
-            if (!res.ok) throw new Error(String(res.status));
-            const data = await res.json();
-            const tag = data.tag_name || '';
+            const sources = {
+              desktop: {
+                url: 'https://api.github.com/repos/TortoTech/torto/releases/latest',
+                fallback: desktopReleasesUrl,
+              },
+              mobile: {
+                url: 'https://api.github.com/repos/TortoTech/torto-app/releases/latest',
+                fallback: mobileReleasesUrl,
+              },
+            };
+            const releases = {};
+            await Promise.all(Object.entries(sources).map(async ([key, source]) => {
+              try {
+                const res = await fetch(source.url);
+                if (!res.ok) throw new Error(String(res.status));
+                releases[key] = await res.json();
+              } catch {
+                releases[key] = null;
+              }
+            }));
             for (const card of grid.querySelectorAll('.dl-card')) {
+              const sourceKey = card.dataset.source;
               const match = card.dataset.match;
-              const asset = (data.assets || []).find(
+              const data = releases[sourceKey];
+              const source = sources[sourceKey];
+              const asset = (data?.assets || []).find(
                 (a) => a.name && a.name.endsWith(match)
               );
               const versionEl = card.querySelector('.version');
               const btn = card.querySelector('.dl-btn');
-              if (versionEl) versionEl.textContent = tag;
+              if (versionEl) {
+                versionEl.textContent = data?.tag_name || source.fallback;
+                if (!data) {
+                  versionEl.style.fontSize = '12px';
+                  versionEl.style.wordBreak = 'break-all';
+                }
+              }
               if (asset && btn) btn.href = asset.browser_download_url;
             }
           } catch {
             for (const versionEl of grid.querySelectorAll('.version')) {
-              versionEl.textContent = releasesUrl;
+              versionEl.textContent = versionEl.closest('.dl-card')?.dataset.source === 'mobile'
+                ? mobileReleasesUrl
+                : desktopReleasesUrl;
               versionEl.style.fontSize = '12px';
               versionEl.style.wordBreak = 'break-all';
             }
