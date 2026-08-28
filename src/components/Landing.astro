@@ -16,26 +16,32 @@ const langHref = zh ? `${base}en/` : base;
 
 const t = zh
   ? {
-      title: 'Torto 小龟阅读 — 以专注模式为核心的本地优先电子书阅读器',
-      desc: 'Torto（小龟阅读）是一款支持 Windows、macOS 与 Android 的本地优先电子书阅读器，以专注模式、原生渲染、统一版式和可选 AI 阅读工具重新组织数字阅读体验。',
+      title: 'Torto 小龟阅读 — 专注精读 · 纸墨雅致的本地优先电子书阅读器',
+      desc: 'Torto（小龟阅读）是一款支持 Windows、macOS 与 Android 的本地优先电子书阅读器。一次只专注于一个有意义的阅读单元、统一排版、键盘操作优先、零干扰。',
       navDocs: '使用文档',
-      navDownload: '下载',
-      langLabel: 'EN',
+      navDownload: '下载安装',
+      langLabel: 'English',
       badge: '开源免费 · Windows · macOS · Android',
-      h1: '小龟阅读 Torto',
-      lead: '一次专注于一个有意义的阅读单元。桌面端以原生 Rust、移动端以原生 Dart 构建，不依赖 WebView，书库与阅读数据始终由你掌控。',
-      ctaDownload: '立即下载',
-      ctaDocs: '查看使用文档',
-      shotsLibrary: '本地书架 — 封面与元数据、批量导入、搜索与最近阅读',
-      shotsReader: '经典阅读 — 单栏、双栏与连续滑动，统一版式或跟随原书',
-      platformTitle: '桌面与移动，使用同一套阅读模型',
-      platformSub: '桌面端与 Android 端分别使用 Rust 和 Dart 原生实现，并通过兼容的 WebDAV 协议连接同一座书库。',
+      h1Prefix: '在喧嚣时代，重拾',
+      h1Highlight: '「 专注精读 」',
+      h1Suffix: '',
+      lead: '一次只专注于一个有意义的阅读单元、统一排版、键盘操作优先、零干扰',
+      ctaDownload: '立即下载体验',
+      ctaDocs: '查阅使用文档',
+
+      // 截图
+      shotsLibrary: 'Torto 书架界面',
+      shotsReader: 'Torto 阅读器界面',
+
+      // 跨端模型
+      platformTitle: '桌面与移动端，共享同一座专属书库',
+      platformSub: '桌面端与移动端均采用纯原生技术打造，无臃肿外壳，通过你自己的私有云盘实现无缝同步。',
       platforms: [
         {
-          label: '桌面端',
+          label: '桌面端 · v0.4.1',
           title: 'Windows 与 macOS',
-          text: '完整的专注模式、经典布局、标注、AI 对话与翻译、语义搜索、PDF OCR，以及直接 WebDAV 同步。',
-          primary: '下载桌面版',
+          text: '完整的专注精读模式、继承 Typst 的优雅排版、全键盘沉浸操作、随段 AI 伴读、扫描 PDF 智能转文字与全格式支持。',
+          primary: '下载桌面版 (MSI / DMG)',
           primaryHref: downloadHref,
           secondary: '桌面端源码',
           secondaryHref: 'https://github.com/TortoTech/torto',
@@ -43,84 +49,184 @@ const t = zh
         {
           label: '移动端 · v0.1',
           title: 'Android 7.0+',
-          text: '原生 Dart 阅读管线，支持多格式导入、统一版式、目录与进度恢复，并可与桌面端直接同步书籍和阅读状态。',
+          text: '原生轻快阅读体验，支持主流电子书格式导入、典雅排版、目录跳转与阅读进度记忆，与电脑端实时同步。',
           primary: '下载 Android APK',
           primaryHref: downloadHref,
           secondary: '移动端源码',
           secondaryHref: 'https://github.com/TortoTech/torto-app',
         },
       ],
-      featTitle: '功能特性',
-      featSub: '从段落级精读到跨设备书库，围绕稳定、可定位的 Reading IR 构建。',
-      features: [
-        { icon: '◎', title: '专注模式', text: '桌面端默认逐个语义单元推进；当前段落保持在稳定位置，聊天、高亮、批注与脚注都跟随上下文。' },
-        { icon: '▤', title: '多格式支持', text: '阅读无 DRM 的 EPUB、MOBI、AZW/AZW3、FB2/FBZ、CBZ、CHM 与 PDF。' },
-        { icon: '⚡', title: '双原生渲染管线', text: '桌面端由 Rust 解析、排版与 GPU 渲染；Android 端由 Dart 与 Flutter Canvas 独立实现。' },
-        { icon: 'Aa', title: '统一版式', text: '统一标题、正文、列表、引用、表格、图片与图注，也可以切回电子书原有样式。' },
-        { icon: '¶', title: '结构化正文', text: '识别段落、嵌套列表、引用、表格、图片、图注与脚注，让导航和交互落在正确的阅读单元上。' },
-        { icon: '✎', title: '选择与标注', text: '自由或按词、句、段选择，复制、高亮和批注都保留可跳转的原文位置。' },
-        { icon: '✦', title: 'AI 阅读工具', text: '可选的流式对话与原文引用、翻译和本地语义搜索；模型与服务商由用户自行配置。' },
-        { icon: '▧', title: 'PDF OCR 重排', text: '识别扫描版 PDF 的正文、目录与元数据，在原始页面和可重排文字版式之间切换。' },
-        { icon: '☁', title: '跨设备 WebDAV 同步', text: '桌面与 Android 通过你的 WebDAV 直接同步书籍、阅读进度及可兼容的阅读数据，无 Torto 中转。' },
+
+      // 四大书房特性
+      featKicker: '精雕细琢 · 书房美学',
+      featTitle: '专为纯粹阅读者打造的核心体验',
+      featSub: '告别浮躁与复杂设置，每一个功能都为你营造安宁、舒适与沉浸的读书氛围。',
+      themes: [
+        {
+          num: '01',
+          title: '沉浸 · 专注精读模式',
+          desc: '视线不跳动，一次只读一段',
+          items: [
+            { icon: '◎', title: '逐段自然推进', text: '将正文拆分为自然的段落与图表单元，每次聚焦当下，读书更有节奏。' },
+            { icon: '⚓', title: '居中视线锚定', text: '当前阅读段落始终保持在最舒适的视野中心，换段不再上下找字。' },
+            { icon: '✂', title: '智能按句拆读 (按 3)', text: '遇到长难段落一键切分为清晰短句，成对引号与标点完好保留，精读更轻松。' },
+            { icon: '✎', title: '随段笔记与高亮', text: '随手划选句子与段落，添加的心得笔记精准附在原文旁，随时回看。' },
+            { icon: '✦', title: '折叠脚注 (按 Alt)', text: '注解自动收拢为精巧小标记，按左 Alt 键或点击即可查看，不打乱正文节奏。' },
+            { icon: '⌨', title: '鼠标自动隐藏 (Ctrl+H)', text: '进入精读后鼠标光标自动隐形，纯键盘沉浸漫游，无屏幕杂讯干扰。' },
+          ],
+        },
+        {
+          num: '02',
+          title: '纯粹 · 纸墨排版之美',
+          desc: '继承 Typst 排版经验，还原纸质书质感',
+          items: [
+            { icon: '⚡', title: '纯原生轻快引擎', text: '不套用臃肿的浏览器内核，内存占用极低，瞬间打开大部头书籍，翻页如丝般顺滑。' },
+            { icon: '¶', title: '继承 Typst 排版经验', text: '精细优化中文标点避头尾、字距挤压与断行规则，呈现出版物级别的整洁版面。' },
+            { icon: '▤', title: '原书版式保真', text: '智能识别并保留作者署名居右、诗歌题记居中等原始特色设计。' },
+            { icon: 'Aa', title: '一键统一排版', text: '自动规范字号、行距与段落间距，也可以随时切回电子书原厂样式。' },
+            { icon: '◫', title: '三种经典视图', text: '提供单栏、双栏以及类似网页的纵向连读模式，随心选用。' },
+            { icon: '▦', title: '表格直接复制为 Markdown', text: '书中复杂的统计表格一键复制为标准 Markdown 格式，方便整理读书笔记。' },
+          ],
+        },
+        {
+          num: '03',
+          title: '敏睿 · 随段 AI 伴读',
+          desc: '紧扣当前原文，有理有据地启发思考',
+          items: [
+            { icon: '💬', title: '段落专属提问 (按 Tab)', text: 'AI 对话严格绑定当前段落，针对性解析难点与翻译，不会东拉西扯。' },
+            { icon: '🔗', title: '严格标明原文出处', text: 'AI 回答中的核心观点直接附带书中具体段落链接，点击立刻跳回原文验证。' },
+            { icon: '∑', title: '公式与图表完整呈现', text: '学术公式、数据表格与流程图直接清晰排版，图表支持点击放大。' },
+            { icon: '🔍', title: '全书快速搜索', text: '快速查找书中任意词句，精准展示上下文片段并一键定位。' },
+            { icon: '🪄', title: '快捷指令与正文润色', text: '支持章节总结、概念提取与正文润色改写，文字工作者的得力助手。' },
+            { icon: '🌐', title: '全书双语对照翻译', text: '外文原著可一键开启双语对照或替换阅读，目录也能同步翻译。' },
+          ],
+        },
+        {
+          num: '04',
+          title: '自在 · 跨端书库管理',
+          desc: '数据尽在本地，全格式兼容与私有云同步',
+          items: [
+            { icon: '📚', title: '支持所有主流格式', text: 'EPUB, MOBI, AZW/AZW3, FB2, CBZ 漫画, CHM 资料与 PDF 均能直接阅读。' },
+            { icon: '⌨', title: '全键盘选书漫游', text: '无需鼠标，方向键直接在书架封面间穿梭，回车即可翻开阅读。' },
+            { icon: '📄', title: '扫描版 PDF 智能转文字', text: '内置 OCR 识别引擎，能将影印版 PDF 转为可调字号的排版文字并进入精读。' },
+            { icon: '☁', title: '私有云盘无缝同步', text: '通过中国科技云、坚果云等私有 WebDAV 同步书库与笔记，数据不经任何第三方中转。' },
+            { icon: '🔒', title: '安全隐私第一', text: '书籍与账号密码仅保存在系统安全存储中，绝不偷偷上传你的书库内容。' },
+            { icon: '🖼', title: '正文插图放大查看', text: '点击书中插图即可全屏浏览、滚轮缩放，并支持直接快捷键复制。' },
+          ],
+        },
       ],
-      bannerH2: '准备好开始阅读了吗？',
-      bannerP: '免费下载 Torto，支持 Windows 10/11、macOS 12+ 与 Android 7.0+。',
-      footerCopy: '© {year} Torto 小龟阅读 · MIT License',
-      footerDocs: '文档',
-      footerReleases: '更新日志',
+
+      bannerH2: '翻开书卷，回归沉静精读',
+      bannerP: '免费下载 Torto 小龟阅读，支持 Windows 10/11、macOS 12+ 与 Android 7.0+。',
+      footerCopy: '© {year} Torto 小龟阅读 · 基于 MIT 协议开源',
+      footerDocs: '文档指南',
+      footerReleases: '版本更新日志',
     }
   : {
-      title: 'Torto — A local-first ebook reader built around Focus Mode',
-      desc: 'Torto is a local-first ebook reader for Windows, macOS and Android, built around Focus Mode, native rendering, unified typography and optional AI reading tools.',
+      title: 'Torto Reader — Focus Reading & Typst-Inspired Typography',
+      desc: 'Torto is a local-first ebook reader for Windows, macOS and Android. Focusing on one meaningful unit at a time, unified typography, keyboard-first navigation, and zero distractions.',
       navDocs: 'Docs',
       navDownload: 'Download',
-      langLabel: '中文',
+      langLabel: '简体中文',
       badge: 'Free & Open Source · Windows · macOS · Android',
-      h1: 'Torto Reader',
-      lead: 'Focus on one meaningful reading unit at a time. Native Rust on desktop and native Dart on mobile — no WebView, with your library and reading data under your control.',
-      ctaDownload: 'Download Now',
-      ctaDocs: 'Read the Docs',
-      shotsLibrary: 'Local library — covers and metadata, bulk import, search and recent reading',
-      shotsReader: 'Classic reading — single-column, two-column and continuous scroll with unified or authored typography',
+      h1Prefix: 'Rediscover the Joy of',
+      h1Highlight: '「 Focus Reading 」',
+      h1Suffix: '',
+      lead: 'Focusing on one meaningful unit at a time, unified typography, keyboard-first navigation, and zero distractions.',
+      ctaDownload: 'Download Torto',
+      ctaDocs: 'Explore the Docs',
+
+      // Screenshots
+      shotsLibrary: 'Torto Shelf View',
+      shotsReader: 'Torto Reader View',
+
+      // Cross-platform
       platformTitle: 'One reading model across desktop and mobile',
-      platformSub: 'The desktop and Android apps use independent native Rust and Dart implementations connected by a compatible direct WebDAV protocol.',
+      platformSub: 'Pure native applications with zero browser bloat, syncing directly through your private cloud.',
       platforms: [
         {
-          label: 'Desktop',
+          label: 'Desktop · v0.4.1',
           title: 'Windows & macOS',
-          text: 'The complete Focus Mode experience, classic layouts, annotations, AI chat and translation, semantic search, PDF OCR and direct WebDAV sync.',
-          primary: 'Download desktop',
+          text: 'The full Focus Mode experience, Typst-inspired typography, full-keyboard navigation, context-bound AI companion, scanned PDF reflow and multi-format support.',
+          primary: 'Download Desktop (MSI / DMG)',
           primaryHref: downloadHref,
-          secondary: 'Desktop source',
+          secondary: 'Desktop Source',
           secondaryHref: 'https://github.com/TortoTech/torto',
         },
         {
           label: 'Mobile · v0.1',
           title: 'Android 7.0+',
-          text: 'A native Dart reading pipeline with multi-format import, unified typography, table-of-contents navigation, progress restoration and desktop-compatible WebDAV sync.',
+          text: 'Native lightweight reading with multi-format import, elegant typography, table-of-contents navigation, progress restoration and desktop-compatible cloud sync.',
           primary: 'Download Android APK',
           primaryHref: downloadHref,
-          secondary: 'Mobile source',
+          secondary: 'Mobile Source',
           secondaryHref: 'https://github.com/TortoTech/torto-app',
         },
       ],
-      featTitle: 'Features',
-      featSub: 'From passage-level close reading to a cross-device library, all built on stable, source-addressable Reading IR.',
-      features: [
-        { icon: '◎', title: 'Focus Mode', text: 'Advance one semantic unit at a time on desktop. Chat, highlights, notes and footnotes stay attached to the active context.' },
-        { icon: '▤', title: 'Multi-format', text: 'Read DRM-free EPUB, MOBI, AZW/AZW3, FB2/FBZ, CBZ, CHM and PDF files.' },
-        { icon: '⚡', title: 'Two Native Pipelines', text: 'Rust parses, lays out and renders on desktop; Dart and Flutter Canvas independently power Android.' },
-        { icon: 'Aa', title: 'Unified Typography', text: 'Normalize headings, prose, lists, quotes, tables, figures and captions, or switch back to authored styles.' },
-        { icon: '¶', title: 'Structured Reading', text: 'Preserve paragraphs, nested lists, quotations, tables, images, captions and footnotes as meaningful reading units.' },
-        { icon: '✎', title: 'Selection & Annotations', text: 'Select freely or by word, sentence or paragraph, then copy, highlight or annotate durable source locations.' },
-        { icon: '✦', title: 'AI Reading Tools', text: 'Optional streaming chat with source citations, translation and local semantic search using providers you configure.' },
-        { icon: '▧', title: 'PDF OCR & Reflow', text: 'Recognize body text, contents and metadata, then switch between original pages and a reflowable text layout.' },
-        { icon: '☁', title: 'Cross-device WebDAV', text: 'Desktop and Android sync books, progress and compatible reading data directly through your WebDAV—no Torto relay.' },
+
+      // Themes
+      featKicker: 'Carefully Crafted · Reading Studio',
+      featTitle: 'Built for Discerning Readers',
+      featSub: 'Every feature is purposefully designed to foster a calm, serene, and deeply focused reading atmosphere.',
+      themes: [
+        {
+          num: '01',
+          title: 'Immersive · Focus Reading Mode',
+          desc: 'One meaningful passage at a time with steady eye focus',
+          items: [
+            { icon: '◎', title: 'Semantic Unit Flow', text: 'Advances smoothly paragraph by paragraph so your mind stays in flow.' },
+            { icon: '⚓', title: 'Centered Baseline Anchor', text: 'The active paragraph stays centered in your comfortable line of sight.' },
+            { icon: '✂', title: 'Sentence Splitting (Key 3)', text: 'Split long dense paragraphs into clear sentences for effortless close reading.' },
+            { icon: '✎', title: 'Inline Notes & Highlights', text: 'Select text freely and attach notes that remain permanently tied to the exact passage.' },
+            { icon: '✦', title: 'Folded Footnotes (Key Alt)', text: 'Footnotes collapse into neat badge icons that expand instantly on demand.' },
+            { icon: '⌨', title: 'Auto-Hidden Cursor (Ctrl+H)', text: 'The cursor fades away automatically in Focus Mode for zero visual distraction.' },
+          ],
+        },
+        {
+          num: '02',
+          title: 'Pure · Typst-Inspired Typography',
+          desc: 'Clean, elegant, publication-grade reading layouts',
+          items: [
+            { icon: '⚡', title: 'Native Lightweight Engine', text: 'Free of heavy web wrappers. Starts instantly, runs light, and scrolls with butter-smooth fluidity.' },
+            { icon: '¶', title: 'Typst-Inspired Linebreaking', text: 'Advanced CJK punctuation hanging and compression rules for book-like layout quality.' },
+            { icon: '▤', title: 'Authored Style Fidelity', text: 'Preserves author signatures, centered quotes, and artistic book layouts faithfully.' },
+            { icon: 'Aa', title: 'Unified Typography', text: 'Normalize font sizes, line heights, and margins with one click, or toggle back anytime.' },
+            { icon: '◫', title: 'Three Classic Views', text: 'Choose between single-column, two-column spread, or continuous vertical scroll.' },
+            { icon: '▦', title: 'Markdown Table Export', text: 'Copy complex book tables directly as standard Markdown for your personal notes.' },
+          ],
+        },
+        {
+          num: '03',
+          title: 'Grounded · AI Reading Companion',
+          desc: 'Attached strictly to active context with exact citations',
+          items: [
+            { icon: '💬', title: 'Unit-Bound Chat (Key Tab)', text: 'AI discussions strictly attach to the active passage without confusing context.' },
+            { icon: '🔗', title: 'Exact Source Citations', text: 'Key insights include clickable paragraph citations jumping directly to the source text.' },
+            { icon: '∑', title: 'Formulas & Charts Rendering', text: 'Native rendering for math formulas, tables, and zoomable diagrams.' },
+            { icon: '🔍', title: 'Instant Full-Text Search', text: 'Quickly find any passage across the book with matching excerpts and 1-click navigation.' },
+            { icon: '🪄', title: 'Slash Commands & Polishing', text: 'Quick actions for chapter summaries, concept extraction, and live text polishing.' },
+            { icon: '🌐', title: 'Bilingual Book Translation', text: 'Read foreign classics with parallel bilingual view or full replacement translation.' },
+          ],
+        },
+        {
+          num: '04',
+          title: 'Open · Local-First Library',
+          desc: 'Private data, wide format support, and direct WebDAV sync',
+          items: [
+            { icon: '📚', title: 'All Major Ebook Formats', text: 'Read DRM-free EPUB, MOBI, AZW/AZW3, FB2, CBZ comics, CHM docs, and PDF.' },
+            { icon: '⌨', title: 'All-Keyboard Shelf Navigation', text: 'Browse book covers and start reading entirely with arrow keys and Enter.' },
+            { icon: '📄', title: 'Scanned PDF OCR & Reflow', text: 'Recognize scanned PDFs into reflowable text with adjustable fonts.' },
+            { icon: '☁', title: 'Direct WebDAV Cloud Sync', text: 'Sync books, progress, and notes between desktop and mobile with zero third-party relay.' },
+            { icon: '🔒', title: 'Privacy & Security First', text: 'Credentials stay in your OS secure vault. Books are never uploaded without consent.' },
+            { icon: '🖼', title: 'Image Zoom & Copy', text: 'Click illustrations for overlay zoom, panning, and quick clipboard copying.' },
+          ],
+        },
       ],
-      bannerH2: 'Ready to start reading?',
-      bannerP: 'Download Torto for free on Windows 10/11, macOS 12+ and Android 7.0+.',
+
+      bannerH2: 'Open a Book and Experience True Focus',
+      bannerP: 'Download Torto Reader for free on Windows 10/11, macOS 12+ and Android 7.0+.',
       footerCopy: '© {year} Torto · MIT License',
-      footerDocs: 'Docs',
+      footerDocs: 'Documentation',
       footerReleases: 'Changelog',
     };
 ---
@@ -132,18 +238,19 @@ const t = zh
     <title>{t.title}</title>
     <meta name="description" content={t.desc} />
     <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
     <script define:vars={{ base }}>
-      // 语言自动切换：优先用户手动选择（localStorage），否则按浏览器语言
       (function () {
         var KEY = 'torto-lang';
-        var rel = location.pathname.slice(base.length - 1); // 去掉 base 前缀，保留开头 /
+        var rel = location.pathname.slice(base.length - 1);
         var isEn = rel === '/en' || rel.indexOf('/en/') === 0;
         var stored = null;
         try { stored = localStorage.getItem(KEY); } catch (e) {}
         var pref = stored || ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
         if (pref === 'en' && !isEn) location.replace(base + 'en' + (rel === '/' ? '/' : rel));
         else if (pref === 'zh' && isEn) location.replace(base + rel.replace(/^\/en\/?/, '') || base);
-        // 手动点击语言切换时记住选择
         document.addEventListener('click', function (e) {
           var a = e.target && e.target.closest ? e.target.closest('a.lang-switch') : null;
           if (a) { try { localStorage.setItem(KEY, isEn ? 'zh' : 'en'); } catch (err) {} }
@@ -152,26 +259,35 @@ const t = zh
     </script>
   </head>
   <body>
+    <!-- 顶部导航 -->
     <nav class="nav">
       <div class="wrap nav-inner">
         <a class="brand" href={homeHref}>
           <img src={`${base}images/logo.png`} alt="Torto" />
-          <span>Torto</span>
+          <div class="brand-text">
+            <span>Torto</span>
+            {zh && <span class="brand-sub">小龟阅读</span>}
+          </div>
         </a>
         <div class="nav-links">
           <a href={docsHref}>{t.navDocs}</a>
-          <a href="https://github.com/TortoTech/torto">GitHub</a>
+          <a href="https://github.com/TortoTech/torto" target="_blank" rel="noopener">GitHub</a>
           <a class="lang-switch" href={langHref}>{t.langLabel}</a>
           <a class="nav-cta" href={downloadHref}>{t.navDownload}</a>
         </div>
       </div>
     </nav>
 
+    <!-- Hero 区域 -->
     <header class="hero">
       <div class="wrap hero-inner">
-        <img class="hero-logo" src={`${base}images/logo.png`} alt="Torto logo" />
-        <span class="badge">{t.badge}</span>
-        <h1>{t.h1}</h1>
+        <div class="hero-badge-wrap">
+          <span class="hero-badge-dot"></span>
+          <span>{t.badge}</span>
+        </div>
+        <h1>
+          {t.h1Prefix}<span class="highlight-serif">{t.h1Highlight}</span>{t.h1Suffix}
+        </h1>
         <p class="lead">{t.lead}</p>
         <div class="cta-row">
           <a class="btn btn-primary" href={downloadHref}>{t.ctaDownload}</a>
@@ -180,22 +296,25 @@ const t = zh
       </div>
     </header>
 
+    <!-- 实机截图对比（纯净大图） -->
     <section class="screenshots wrap">
       <div class="shot-grid">
         <figure>
           <img src={`${base}images/library.png`} alt={t.shotsLibrary} loading="lazy" />
-          <figcaption>{t.shotsLibrary}</figcaption>
         </figure>
         <figure>
           <img src={`${base}images/reader.png`} alt={t.shotsReader} loading="lazy" />
-          <figcaption>{t.shotsReader}</figcaption>
         </figure>
       </div>
     </section>
 
+    <!-- 跨端架构 -->
     <section class="section wrap" id="platforms">
-      <h2>{t.platformTitle}</h2>
-      <p class="sub">{t.platformSub}</p>
+      <div class="center">
+        <span class="section-kicker">Cross Platform</span>
+        <h2>{t.platformTitle}</h2>
+        <p class="sub">{t.platformSub}</p>
+      </div>
       <div class="platform-grid">
         {t.platforms.map((platform) => (
           <article class="platform-card">
@@ -204,27 +323,44 @@ const t = zh
             <p>{platform.text}</p>
             <div class="platform-links">
               <a class="btn btn-primary" href={platform.primaryHref}>{platform.primary}</a>
-              <a class="text-link" href={platform.secondaryHref}>{platform.secondary} ↗</a>
+              <a class="text-link" href={platform.secondaryHref} target="_blank" rel="noopener">{platform.secondary} ↗</a>
             </div>
           </article>
         ))}
       </div>
     </section>
 
+    <!-- 四大书房特性板块 -->
     <section class="section wrap" id="features">
-      <h2>{t.featTitle}</h2>
-      <p class="sub">{t.featSub}</p>
-      <div class="feature-grid">
-        {t.features.map((f) => (
-          <div class="card">
-            <div class="icon">{f.icon}</div>
-            <h3>{f.title}</h3>
-            <p>{f.text}</p>
+      <div class="center">
+        <span class="section-kicker">{t.featKicker}</span>
+        <h2>{t.featTitle}</h2>
+        <p class="sub">{t.featSub}</p>
+      </div>
+
+      <div class="features-container">
+        {t.themes.map((theme) => (
+          <div class="feature-theme-block">
+            <div class="feature-theme-header">
+              <span class="feature-theme-num">{theme.num}</span>
+              <span class="feature-theme-title">{theme.title}</span>
+              <span class="feature-theme-desc">{theme.desc}</span>
+            </div>
+            <div class="theme-grid">
+              {theme.items.map((item) => (
+                <div class="feature-item">
+                  <div class="feature-item-icon">{item.icon}</div>
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
     </section>
 
+    <!-- 底部行动呼吁 -->
     <section class="wrap">
       <div class="banner">
         <h2>{t.bannerH2}</h2>
@@ -233,12 +369,13 @@ const t = zh
       </div>
     </section>
 
+    <!-- 优雅页脚 -->
     <footer class="footer">
       <div class="wrap footer-inner">
         <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
         <a href={docsHref}>{t.footerDocs}</a>
-        <a href="https://github.com/TortoTech/torto/releases">{t.footerReleases}</a>
-        <span class="right"><a href="https://github.com/TortoTech">github.com/TortoTech</a></span>
+        <a href="https://github.com/TortoTech/torto/releases" target="_blank" rel="noopener">{t.footerReleases}</a>
+        <span class="right"><a href="https://github.com/TortoTech" target="_blank" rel="noopener">github.com/TortoTech</a></span>
       </div>
     </footer>
   </body>

@@ -1,20 +1,95 @@
-/* Starlight 主题微调：与落地页同一套品牌色 */
+/* Starlight 文档主题定制：青竹松柏与暖纸书卷风 */
+
 :root {
-  --sl-color-accent-low: #1d3a2f;
-  --sl-color-accent: #3fa97c;
-  --sl-color-accent-high: #c4ecd8;
-  --sl-color-white: #ffffff;
-  --sl-color-gray-1: #eceff1;
-  --sl-color-gray-2: #c3ccd2;
-  --sl-color-gray-3: #8b989f;
-  --sl-color-gray-4: #5d6b72;
-  --sl-color-gray-5: #3c474d;
-  --sl-color-gray-6: #2a3338;
-  --sl-color-black: #171d21;
+  /* 亮色模式：温润纸色与松柏绿 */
+  --sl-color-accent-low: #edf6f0;
+  --sl-color-accent: #2d6a4f;
+  --sl-color-accent-high: #1b4332;
+  --sl-color-white: #1f2724;
+  --sl-color-gray-1: #38453f;
+  --sl-color-gray-2: #54625b;
+  --sl-color-gray-3: #84938c;
+  --sl-color-gray-4: #c0ccc5;
+  --sl-color-gray-5: #e8e3d6;
+  --sl-color-gray-6: #f6f3eb;
+  --sl-color-black: #fcfbf8;
+
+  --sl-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --sl-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
 }
 
 :root[data-theme='light'] {
-  --sl-color-accent-low: #c9ecdb;
-  --sl-color-accent: #1f8a5c;
-  --sl-color-accent-high: #11402c;
+  --sl-color-bg: #fcfbf8;
+  --sl-color-bg-nav: rgba(252, 251, 248, 0.92);
+  --sl-color-bg-sidebar: #f6f3eb;
+  --sl-color-hairline: #e8e3d6;
+  --sl-color-hairline-light: #f0ebe0;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #1c2e25;
+  --sl-color-accent: #52b788;
+  --sl-color-accent-high: #b7e4c7;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e8efe9;
+  --sl-color-gray-2: #a4b3ac;
+  --sl-color-gray-3: #708078;
+  --sl-color-gray-4: #424e49;
+  --sl-color-gray-5: #2e3834;
+  --sl-color-gray-6: #1c2220;
+  --sl-color-black: #141817;
+
+  --sl-color-bg: #141817;
+  --sl-color-bg-nav: rgba(20, 24, 23, 0.92);
+  --sl-color-bg-sidebar: #19201e;
+  --sl-color-hairline: #2e3834;
+  --sl-color-hairline-light: #242d2a;
+}
+
+/* 标题注入衬线书卷美感 */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* 表格响应式与宽松舒展排版 */
+.sl-markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-hairline);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  padding: 10px 14px;
+  border: 1px solid var(--sl-color-hairline);
+  vertical-align: middle;
+}
+
+.sl-markdown-content th {
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sl-markdown-content td code {
+  font-size: 12.5px;
+  word-break: break-all;
+}
+
+.sl-markdown-content blockquote {
+  border-left-color: var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+  padding: 12px 18px;
+  border-radius: 0 8px 8px 0;
 }

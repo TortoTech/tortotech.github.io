@@ -17,62 +17,94 @@ const mobileReleasesUrl = 'https://github.com/TortoTech/torto-app/releases/lates
 
 const t = zh
   ? {
-      title: '下载 Torto 小龟阅读',
-      desc: '下载 Torto（小龟阅读）的 Windows MSI、macOS DMG 与 Android APK。',
+      title: '下载 Torto 小龟阅读 — 纯净本地优先阅读器',
+      desc: '下载 Torto（小龟阅读）最新安装包：Windows 64位 MSI、macOS Apple Silicon / Intel DMG 与 Android APK。',
       navDocs: '使用文档',
-      langLabel: 'EN',
-      h1: '下载 Torto',
-      sub: '桌面端与 Android 安装包均发布于 GitHub Releases，点击按钮即可获取对应平台的最新版本。',
-      versionLoading: '正在获取最新版本…',
-      versionFallback: '前往 GitHub Releases 下载最新版本',
+      langLabel: 'English',
+      h1: '下载 Torto 小龟阅读',
+      sub: '全平台安装包均发布于 GitHub Releases，采用纯原生引擎构建，安全透明、无强制中转。',
+      versionLoading: '正在获取最新发行版…',
+      versionFallback: '前往 GitHub Releases 下载',
       platforms: [
-        { name: 'Windows', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M 系列芯片 · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS（Intel）', hint: 'macOS 12+ · Intel 芯片 · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'Android', hint: 'Android 7.0+ · ARM64 APK（大多数手机）', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
+        { name: 'Windows 桌面版', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M1/M2/M3/M4 系列芯片 · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Intel 芯片）', hint: 'macOS 12+ · Intel 处理器 · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'Android 移动端', hint: 'Android 7.0+ · ARM64 APK（主流手机架构）', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
-      dlBtn: '下载',
-      notesTitle: '安装说明',
+      dlBtn: '立即下载',
+      shortcutsTitle: '常用快捷键速查（全键盘沉浸操作）',
+      shortcuts: [
+        { key: 'Space', desc: '唤起单元浮动操作栏' },
+        { key: 'Tab', desc: '打开当前段落随段 AI 伴读' },
+        { key: '1 / 2', desc: '随段高亮 / 添加段落笔记' },
+        { key: '3', desc: '智能按句分段（精读长难句）' },
+        { key: '左 Alt', desc: '展开 / 收起随段折叠脚注' },
+        { key: 'Ctrl + H', desc: '隐藏 / 显示鼠标光标' },
+        { key: 'Ctrl + F', desc: '全书快速全文检索' },
+        { key: 'Ctrl + ,', desc: '打开阅读器与排版设置' },
+        { key: 'Ctrl + O', desc: '书架导入一本或多本书籍' },
+        { key: 'Ctrl + Q', desc: '从阅读器返回封面书架' },
+        { key: 'F11', desc: '切换无边框沉浸全屏' },
+        { key: '↑ / ↓ / 回车', desc: '书架与目录全键盘漫游' },
+      ],
+      notesTitle: '安装与运行说明',
       notes: [
-        'Windows：首次运行 MSI 可能出现 SmartScreen 提示，选择「仍要运行」即可；安装后支持自动更新（SHA-256 校验）。',
-        'macOS：DMG 为 ad-hoc 签名，首次打开请在「访达」中右键 →「打开」，或在 系统设置 → 隐私与安全性 中允许运行。',
-        '每个 DMG 均附带 .sha256 校验文件，可用于核对下载完整性。',
-        'Android：当前为 0.1 系列早期版本。大多数手机请选择 arm64-v8a；旧式 32 位设备与模拟器可在移动端 Releases 页面下载其他架构。',
+        'Windows：首次运行 MSI 安装包若出现 Windows Defender SmartScreen 提示，点击「更多信息」→「仍要运行」即可；安装后内置自动升级检查。',
+        'macOS：首次打开若出现安全提示，请在「访达」中右键点击 Torto 图标选择「打开」，或在「系统设置 → 隐私与安全性」中选择「仍要打开」。',
+        '校验文件：每个发布版本均附带对应 .sha256 校验文件，可用于核对文件完整性。',
+        'Android：当前为 0.1 系列早期构建。绝大多数设备请下载 arm64-v8a；旧款 32 位设备可在移动端 Releases 列表选用对应架构。',
       ],
-      ocrTip: '安装完成后，可查阅桌面端 PDF OCR 与跨设备云同步配置：',
-      ocrLink1: 'OCR 服务商配置',
-      ocrLink2: '云盘服务商配置',
-      andText: '与',
+      ocrTip: '安装完成后，推荐查阅以下指南以开启高级功能：',
+      ocrLink1: 'OCR 服务商配置（扫描 PDF 转文字）',
+      ocrLink2: '私有 WebDAV 云同步配置',
+      ocrLink3: '专注模式精读指南',
+      andText: '、',
       sentenceEnd: '。',
-      footerCopy: '© {year} Torto 小龟阅读 · MIT License',
+      footerCopy: '© {year} Torto 小龟阅读 · 基于 MIT 协议开源',
     }
   : {
-      title: 'Download Torto',
-      desc: 'Download Torto for Windows (MSI), macOS (DMG) and Android (APK).',
+      title: 'Download Torto Reader — Local-First Ebook Reader',
+      desc: 'Download Torto Reader installers: Windows 64-bit MSI, macOS Apple Silicon / Intel DMG, and Android APK.',
       navDocs: 'Docs',
-      langLabel: '中文',
-      h1: 'Download Torto',
-      sub: 'Desktop and Android installers are published on GitHub Releases. Each button fetches the latest build for that platform.',
-      versionLoading: 'Fetching the latest release…',
-      versionFallback: 'Get the latest version on GitHub Releases',
+      langLabel: '简体中文',
+      h1: 'Download Torto Reader',
+      sub: 'All installers are published transparently on GitHub Releases, built with pure native pipelines without web wrapper overhead.',
+      versionLoading: 'Fetching latest release info…',
+      versionFallback: 'Get latest on GitHub Releases',
       platforms: [
-        { name: 'Windows', hint: 'Windows 10 / 11 (64-bit) · MSI installer', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M-series · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'Android', hint: 'Android 7.0+ · ARM64 APK (most phones)', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
+        { name: 'Windows Desktop', hint: 'Windows 10 / 11 (64-bit) · MSI Installer', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M1/M2/M3/M4 Series · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel Processors · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'Android Mobile', hint: 'Android 7.0+ · ARM64 APK (most phones)', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
-      dlBtn: 'Download',
-      notesTitle: 'Installation Notes',
+      dlBtn: 'Download Now',
+      shortcutsTitle: 'Essential Keyboard Shortcuts (All-Keyboard Immersion)',
+      shortcuts: [
+        { key: 'Space', desc: 'Toggle floating action bar' },
+        { key: 'Tab', desc: 'Open context-bound AI chat' },
+        { key: '1 / 2', desc: 'Highlight / Add unit note' },
+        { key: '3', desc: 'Sentence splitting for close reading' },
+        { key: 'Left Alt', desc: 'Toggle folded footnote popup' },
+        { key: 'Ctrl + H', desc: 'Toggle mouse cursor visibility' },
+        { key: 'Ctrl + F', desc: 'Instant full-text book search' },
+        { key: 'Ctrl + ,', desc: 'Open settings overlay' },
+        { key: 'Ctrl + O', desc: 'Import books into shelf' },
+        { key: 'Ctrl + Q', desc: 'Back to library shelf' },
+        { key: 'F11', desc: 'Toggle borderless fullscreen' },
+        { key: '↑ / ↓ / Enter', desc: 'Shelf and TOC keyboard roaming' },
+      ],
+      notesTitle: 'Installation & Verification Notes',
       notes: [
-        'Windows: SmartScreen may warn on first run — choose "Run anyway". Built-in auto-update with SHA-256 verification.',
-        'macOS: the DMG is ad-hoc signed. On first launch, right-click → "Open" in Finder, or allow it in System Settings → Privacy & Security.',
-        'Each DMG ships with a .sha256 file so you can verify download integrity.',
-        'Android: the current 0.1 series is an early release. Choose arm64-v8a for most phones; 32-bit devices and emulators can use the other APK variants on the mobile Releases page.',
+        'Windows: SmartScreen may flag the first run. Click "More info" → "Run anyway". Built-in auto-update check with SHA-256 verification.',
+        'macOS: On first launch, right-click Torto in Finder and select "Open", or allow it under "System Settings → Privacy & Security".',
+        'Integrity: Each release includes a .sha256 checksum file to verify package authenticity.',
+        'Android: The current 0.1 series is an early build. Choose arm64-v8a for most modern devices; older 32-bit builds are available on the mobile Releases page.',
       ],
-      ocrTip: 'After installing, see the guides for desktop PDF OCR and cross-device cloud sync:',
-      ocrLink1: 'OCR Providers',
-      ocrLink2: 'Cloud Storage Providers',
-      andText: 'and',
+      ocrTip: 'After installing, explore the configuration guides for advanced capabilities:',
+      ocrLink1: 'OCR Providers (Scanned PDF Reflow)',
+      ocrLink2: 'Private WebDAV Cloud Sync',
+      ocrLink3: 'Focus Mode Guide',
+      andText: ', ',
       sentenceEnd: '.',
       footerCopy: '© {year} Torto · MIT License',
     };
@@ -85,18 +117,19 @@ const t = zh
     <title>{t.title}</title>
     <meta name="description" content={t.desc} />
     <link rel="icon" type="image/png" href={`${base}images/logo.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
     <script define:vars={{ base }}>
-      // 语言自动切换：优先用户手动选择（localStorage），否则按浏览器语言
       (function () {
         var KEY = 'torto-lang';
-        var rel = location.pathname.slice(base.length - 1); // 去掉 base 前缀，保留开头 /
+        var rel = location.pathname.slice(base.length - 1);
         var isEn = rel === '/en' || rel.indexOf('/en/') === 0;
         var stored = null;
         try { stored = localStorage.getItem(KEY); } catch (e) {}
         var pref = stored || ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
-        if (pref === 'en' && !isEn) location.replace(base + 'en' + (rel === '/' ? '/' : rel));
-        else if (pref === 'zh' && isEn) location.replace(base + rel.replace(/^\/en\/?/, '') || base);
-        // 手动点击语言切换时记住选择
+        if (pref === 'en' && !isEn) location.replace(base + 'en/download/');
+        else if (pref === 'zh' && isEn) location.replace(base + 'download/');
         document.addEventListener('click', function (e) {
           var a = e.target && e.target.closest ? e.target.closest('a.lang-switch') : null;
           if (a) { try { localStorage.setItem(KEY, isEn ? 'zh' : 'en'); } catch (err) {} }
@@ -105,23 +138,31 @@ const t = zh
     </script>
   </head>
   <body>
+    <!-- 顶部导航 -->
     <nav class="nav">
       <div class="wrap nav-inner">
         <a class="brand" href={homeHref}>
           <img src={`${base}images/logo.png`} alt="Torto" />
-          <span>Torto</span>
+          <div class="brand-text">
+            <span>Torto</span>
+            {zh && <span class="brand-sub">小龟阅读</span>}
+          </div>
         </a>
         <div class="nav-links">
           <a href={docsHref}>{t.navDocs}</a>
-          <a href="https://github.com/TortoTech/torto">GitHub</a>
+          <a href="https://github.com/TortoTech/torto" target="_blank" rel="noopener">GitHub</a>
           <a class="lang-switch" href={langHref}>{t.langLabel}</a>
         </div>
       </div>
     </nav>
 
+    <!-- 下载内容主体 -->
     <main class="section wrap">
-      <h1>{t.h1}</h1>
-      <p class="sub">{t.sub}</p>
+      <div class="center">
+        <span class="section-kicker">Releases & Packages</span>
+        <h1>{t.h1}</h1>
+        <p class="sub">{t.sub}</p>
+      </div>
 
       <div class="dl-grid" id="dl-grid" data-locale={zh ? 'zh-CN' : 'en'}>
         {t.platforms.map((p) => (
@@ -136,34 +177,54 @@ const t = zh
         ))}
       </div>
 
+      <!-- 快捷键速查表 -->
+      <div class="shortcuts-table-wrap">
+        <h3>{t.shortcutsTitle}</h3>
+        <div class="shortcuts-grid">
+          {t.shortcuts.map((s) => (
+            <div class="shortcut-item">
+              <span class="kbd-tag">{s.key}</span>
+              <span>{s.desc}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- 安装说明 -->
       <div class="dl-notes">
         <h3>{t.notesTitle}</h3>
         <ul>
           {t.notes.map((n) => <li>{n}</li>)}
         </ul>
-        <p style="margin:14px 0 0;color:var(--text-dim);font-size:14.5px">
+        <p style="margin: 20px 0 0; color: var(--text-sub); font-size: 14.5px; line-height: 1.8;">
           {t.ocrTip}{' '}
           <a href={zh ? `${base}guides/ocr-providers/` : `${base}en/guides/ocr-providers/`}>{t.ocrLink1}</a>
-          {' '}{t.andText}{' '}
-          <a href={zh ? `${base}guides/cloud-storage/` : `${base}en/guides/cloud-storage/`}>{t.ocrLink2}</a>{t.sentenceEnd}
+          {t.andText}
+          <a href={zh ? `${base}guides/cloud-storage/` : `${base}en/guides/cloud-storage/`}>{t.ocrLink2}</a>
+          {t.andText}
+          <a href={zh ? `${base}guides/focus-mode/` : `${base}en/guides/focus-mode/`}>{t.ocrLink3}</a>
+          {t.sentenceEnd}
         </p>
       </div>
     </main>
 
+    <!-- 页脚 -->
     <footer class="footer">
       <div class="wrap footer-inner">
         <span>{t.footerCopy.replace('{year}', String(new Date().getFullYear()))}</span>
-        <span class="right"><a href="https://github.com/TortoTech">github.com/TortoTech</a></span>
+        <a href={docsHref}>{zh ? '文档指南' : 'Documentation'}</a>
+        <span class="right"><a href="https://github.com/TortoTech" target="_blank" rel="noopener">github.com/TortoTech</a></span>
       </div>
     </footer>
 
+    <!-- 动态拉取 Release 脚本 -->
     <script define:vars={{ desktopReleasesUrl, mobileReleasesUrl }}>
       (function () {
         const grid = document.getElementById('dl-grid');
         if (!grid) return;
         const locale = grid.dataset.locale || 'en';
 
-        // 平台检测：高亮推荐当前平台的安装包
+        // 平台智能检测
         async function detectMatch() {
           const ua = navigator.userAgent;
           if (/Android/i.test(ua)) return { source: 'mobile', match: 'android-arm64-v8a.apk' };
@@ -175,7 +236,7 @@ const t = zh
                 return { source: 'desktop', match: v.architecture === 'arm' ? 'macos-arm64.dmg' : 'macos-x86_64.dmg' };
               }
             } catch {}
-            return { source: 'desktop', match: 'macos-arm64.dmg' }; // 近年 Mac 以 Apple 芯片为主，无法判定时默认 arm64
+            return { source: 'desktop', match: 'macos-arm64.dmg' };
           }
           return null;
         }
@@ -188,12 +249,11 @@ const t = zh
           card.classList.add('recommended');
           const badge = document.createElement('span');
           badge.className = 'dl-badge';
-          badge.textContent = locale === 'zh-CN' ? '推荐下载' : 'Recommended';
+          badge.textContent = locale === 'zh-CN' ? '系统匹配推荐' : 'Recommended';
           card.prepend(badge);
         })();
 
-        // 分别从桌面端与移动端 GitHub API 拉取最新 release，把下载按钮升级为具体安装包；
-        // 失败（限流/离线）时保持回退到 Releases 页面。
+        // GitHub Releases API 动态拉取具体文件名
         (async () => {
           try {
             const sources = {
@@ -216,6 +276,7 @@ const t = zh
                 releases[key] = null;
               }
             }));
+
             for (const card of grid.querySelectorAll('.dl-card')) {
               const sourceKey = card.dataset.source;
               const match = card.dataset.match;
@@ -227,7 +288,7 @@ const t = zh
               const versionEl = card.querySelector('.version');
               const btn = card.querySelector('.dl-btn');
               if (versionEl) {
-                versionEl.textContent = data?.tag_name || source.fallback;
+                versionEl.textContent = data?.tag_name ? `${data.tag_name}` : source.fallback;
                 if (!data) {
                   versionEl.style.fontSize = '12px';
                   versionEl.style.wordBreak = 'break-all';

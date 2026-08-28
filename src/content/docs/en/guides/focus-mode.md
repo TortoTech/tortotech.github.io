@@ -1,50 +1,75 @@
 ---
-title: Focus Mode
-description: How to use Torto's Focus mode — paragraph-by-paragraph centered reading, keyboard-driven navigation, per-paragraph AI chat and inline notes for immersive close reading.
+title: Focus Mode Guide
+description: In-depth guide to Torto's Focus Mode — paragraph-by-paragraph flow, centered reading anchor, sentence splitting, context-bound AI companion, folded footnotes, and all-keyboard immersion.
 ---
 
-Focus mode is a paragraph-by-paragraph close-reading mode: the text switches to vertical scrolling, the current paragraph is automatically centered and highlighted, and everything else (sidebar, AI panel, …) is tucked away — so you can focus on one paragraph at a time.
+Focus Mode is the **flagship close-reading experience** of Torto Reader. Rather than dividing digital books into arbitrary page boxes, Focus Mode parses content into natural reading units (paragraphs, lists, quotes, code blocks, tables, images and captions), anchoring the active paragraph to a steady, comfortable reading line.
 
-## Turning It On and Off
+Peripheral distractions (sidebars, menus) are tucked away by default. Highlights, notes, footnotes, and AI discussions stay directly attached to the active reading passage.
 
-- **Reader menu**: click the menu button in the top-right corner of the reader and choose "Focus mode"; click "Classic mode" to switch back.
-- **Settings**: go to **Settings → Reading → Reading mode** and select "Focus". The reading mode is a global setting and applies to all books.
+---
 
-:::tip[PDF books]
-Focus mode requires reflowable text. For scanned PDFs, switch to the **OCR layout** in the reader first; switching a PDF back to the original view automatically exits Focus mode.
+## Entering & Toggling Focus Mode
+
+- **Reader Menu**: Click the menu in the top-right corner and select "Focus Mode". Click "Classic Mode" to switch to single-column, two-column, or continuous scroll layout.
+- **Global Preferences**: Go to **Settings → Reading → Reading Mode** and choose "Focus". This sets Focus Mode as the default for all opened books.
+- **Shortcut**: Press `Ctrl + ,` anytime to open the settings panel.
+
+:::tip[Scanned PDF Ebooks]
+Focus Mode requires reflowable text. For scanned PDFs, configure an OCR provider under **Settings → OCR**, then switch to **OCR Layout** in the reader to enjoy Focus Mode. Switching back to original PDF pages returns to classic view.
 :::
 
-## Paragraph-by-Paragraph Navigation
+---
 
-In Focus mode, the book is split into "focus units" — one per paragraph, with images and tables each taking a unit. The current unit is always vertically centered and marked with a soft green background:
+## Navigation & Centered Reading Line
 
-| Action | Effect |
-| --- | --- |
-| `↑` / `↓` | Previous / next paragraph |
-| `←` / `→` | Previous / next chapter |
-| Mouse wheel | Scroll one paragraph per notch |
-| Click a paragraph | Make it the current focus unit |
-| Drag the scrollbar | Snaps to the nearest paragraph |
+In Focus Mode, navigation advances smoothly paragraph by paragraph:
 
-`Esc` closes floating layers (the action bar, sidebar, or paragraph chat) — it does not exit Focus mode. Use the menu or the Settings toggle to leave the mode.
+| Shortcut / Action | Description |
+| :--- | :--- |
+| `↑` / `↓` | Previous / next reading paragraph |
+| `←` / `→` | Jump to previous / next section |
+| **Mouse Wheel** | Scroll one paragraph per notch |
+| **Click any paragraph** | Focus directly on that passage |
+| **Drag scrollbar** | Snaps to the nearest paragraph upon release |
+| `F11` | Toggle borderless fullscreen |
 
-## Per-Paragraph Actions
+:::note[Why Centered Reading Baseline?]
+Traditional readers cause eye fatigue when jumping between paragraphs of different lengths. Torto's Focus Mode starts short units at a fixed, centered baseline and expands downward only for tall units, keeping your gaze calm and focused.
+:::
 
-Quick actions for the current paragraph:
+---
 
-| Shortcut | Action |
-| --- | --- |
-| `Space` | Open the floating action bar next to the paragraph |
-| `Tab` | Open the AI chat for this paragraph |
-| `1` | Highlight the current paragraph |
-| `2` | Add a note to the current paragraph |
+## Keyboard Close-Reading Toolkit
 
-- **Paragraph chat**: each paragraph gets its own AI chat session, opened with the paragraph automatically attached as a reference (shown as "Paragraph N · Chapter title"). Follow-up questions, translations and summaries stay within that paragraph's context. Paragraphs with an existing chat or note show a small icon on the right edge — click it to revisit.
-- **Search and table of contents**: `Ctrl+F` full-text search and TOC navigation work as usual in Focus mode; jumping re-anchors the focus to the target.
-- Image units do not support highlighting or notes; table units are marked with a border instead.
+Focus Mode provides dedicated shortcuts for seamless keyboard-driven reading:
 
-## Why Focus Mode
+| Shortcut | Action | Description |
+| :--- | :--- | :--- |
+| `Space` | Action Bar | Open floating action bar beside the active paragraph |
+| `Tab` | Context-Bound AI Chat | Open AI chat session attached to the passage with source citations |
+| `1` | Highlight | Highlight the active passage |
+| `2` | Note | Add an annotation attached directly to the text |
+| `3` | **Sentence Splitting** | Split dense paragraphs into readable sentences, preserving paired punctuation and quotes |
+| **Left `Alt`** | **Toggle Folded Footnotes** | Folded footnote icons expand instantly upon pressing Left Alt, and collapse when pressed again |
+| `Ctrl + H` | **Hide / Show Cursor** | Hide mouse cursor to eliminate screen distraction |
+| `Ctrl + F` | Full-Text Search | Fast book search jumping directly to matching paragraphs |
+| `Ctrl + Q` | Back to Shelf | Return to the cover shelf |
 
-- **Fewer distractions**: the sidebar and panels are tucked away, leaving only the text and the current paragraph.
-- **Steady pace**: paragraph-by-paragraph movement with auto-centering means your eyes never have to hunt for the next line — ideal for dense or demanding material.
-- **Think as you read**: highlights, notes and AI chats all attach to paragraphs, so your thoughts stay anchored to the exact passage that inspired them.
+---
+
+## Deep Dive into Key Capabilities
+
+### 1. Intelligent Sentence Splitting (`3`)
+When reading dense academic treatises or intricate prose, press `3` to insert breathing room between individual sentences while keeping quotation marks and citations paired.
+
+### 2. Context-Bound AI Chat & Rich Multimodal Rendering (`Tab`)
+- **Isolated Context**: Each unit owns its own conversation session, automatically providing exact citation links back to the book.
+- **Clear Rendering**: AI responses render math formulas, data tables, SVG graphics, and zoomable diagrams cleanly.
+- **Slash Commands**: Use `/summary` to summarize the active chapter, `/search` to query the book, `/rewrite` to polish text live, and `/extract` to list key concepts.
+
+### 3. Markdown Table Export
+Complex tables in Focus Mode can be copied directly as clean, formatted Markdown tables (supporting merged cells and multi-line content) for easy pasting into Obsidian, Logseq, or Notion.
+
+### 4. Zero-Distraction Atmosphere
+Combining **Hide Cursor (`Ctrl+H`)** with **Borderless Fullscreen (`F11`)** leaves only the written word and your thoughts.
