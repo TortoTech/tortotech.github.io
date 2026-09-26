@@ -54,7 +54,17 @@ Focus Mode provides dedicated shortcuts for seamless keyboard-driven reading:
 | **Left `Alt`** | **Toggle Folded Footnotes** | Folded footnote icons expand instantly upon pressing Left Alt, and collapse when pressed again |
 | `Ctrl + H` | **Hide / Show Cursor** | Hide mouse cursor to eliminate screen distraction |
 | `Ctrl + F` | Full-Text Search | Fast book search jumping directly to matching paragraphs |
+| `Ctrl + T` | Toggle Translation | Switch between original, replaced and bilingual translation |
+| `Ctrl + B` / `Ctrl + E` | Sidebars | Toggle the table-of-contents and annotations sidebars |
+| `Shift + ↑` / `Shift + ↓` | Extend Selection | Extend the text selection up / down by reading unit |
+| `Ctrl + Home` / `Ctrl + End` | First / Last Unit | Jump to the first / last reading unit of the book |
 | `Ctrl + Q` | Back to Shelf | Return to the cover shelf |
+
+Every shortcut can be customized under **Settings → Shortcuts**.
+
+:::note[Focus Mode on Android]
+Enable "Focus mode" in the Android reader's typography sheet: swipe vertically to switch or scroll the active unit, swipe horizontally to turn pages, and tap a unit to activate it. "Split by sentence" is a separate switch in the same sheet and only applies in Focus mode.
+:::
 
 ---
 
@@ -65,8 +75,9 @@ When reading dense academic treatises or intricate prose, press `3` to insert br
 
 ### 2. Context-Bound AI Chat & Rich Multimodal Rendering (`Tab`)
 - **Isolated Context**: Each unit owns its own conversation session, automatically providing exact citation links back to the book.
+- **Ask About Images**: You can question the illustrations or image-bearing passages in the active unit, and attached images carry into follow-up questions.
 - **Clear Rendering**: AI responses render math formulas, data tables, SVG graphics, and zoomable diagrams cleanly.
-- **Slash Commands**: Use `/summary` to summarize the active chapter, `/search` to query the book, `/rewrite` to polish text live, and `/extract` to list key concepts.
+- **Slash Commands & Citations**: Type `/` to invoke reading skills — `/summary` summarizes the active chapter, `/search` queries the book, `/rewrite` polishes text live, and `/extract` lists key concepts; type `@` to attach source citations to the conversation.
 
 ### 3. Markdown Table Export
 Complex tables in Focus Mode can be copied directly as clean, formatted Markdown tables (supporting merged cells and multi-line content) for easy pasting into Obsidian, Logseq, or Notion.

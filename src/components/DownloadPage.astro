@@ -27,8 +27,8 @@ const t = zh
       versionFallback: '前往 GitHub Releases 下载',
       platforms: [
         { name: 'Windows 桌面版', hint: 'Windows 10 / 11（64 位）· MSI 安装包', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS（Apple 芯片）', hint: 'macOS 12+ · M1/M2/M3/M4 系列芯片 · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS（Intel 芯片）', hint: 'macOS 12+ · Intel 处理器 · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Apple 芯片）', hint: 'macOS 15+ · M1/M2/M3/M4 系列芯片 · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS（Intel 芯片）', hint: 'macOS 15+ · Intel 处理器 · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
         { name: 'Android 移动端', hint: 'Android 7.0+ · ARM64 APK（主流手机架构）', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
       dlBtn: '立即下载',
@@ -49,10 +49,10 @@ const t = zh
       ],
       notesTitle: '安装与运行说明',
       notes: [
-        'Windows：首次运行 MSI 安装包若出现 Windows Defender SmartScreen 提示，点击「更多信息」→「仍要运行」即可；安装后内置自动升级检查。',
+        'Windows：首次运行 MSI 安装包若出现 Windows Defender SmartScreen 提示，点击「更多信息」→「仍要运行」即可；安装后内置自动升级检查，升级前会按 SHA-256 校验安装包。',
         'macOS：首次打开若出现安全提示，请在「访达」中右键点击 Torto 图标选择「打开」，或在「系统设置 → 隐私与安全性」中选择「仍要打开」。',
-        '校验文件：每个发布版本均附带对应 .sha256 校验文件，可用于核对文件完整性。',
-        'Android：当前为 0.1 系列早期构建。绝大多数设备请下载 arm64-v8a；旧款 32 位设备可在移动端 Releases 列表选用对应架构。',
+        '校验文件：macOS DMG 发布包附带对应 .sha256 校验文件，可用于核对文件完整性；Windows MSI 由内置升级器依据 GitHub 发布摘要自动校验。',
+        'Android：与桌面端保持同一版本节奏。绝大多数设备请下载 arm64-v8a；旧款 32 位设备选用 armeabi-v7a，模拟器或 Intel 设备选用 x86_64；应用内「关于」页可检查新版本。',
       ],
       ocrTip: '安装完成后，推荐查阅以下指南以开启高级功能：',
       ocrLink1: 'OCR 服务商配置（扫描 PDF 转文字）',
@@ -60,7 +60,7 @@ const t = zh
       ocrLink3: '专注模式精读指南',
       andText: '、',
       sentenceEnd: '。',
-      footerCopy: '© {year} Torto 小龟阅读 · 基于 MIT 协议开源',
+      footerCopy: '© {year} Torto 小龟阅读 · 基于 AGPL-3.0 协议开源',
     }
   : {
       title: 'Download Torto Reader — Local-First Ebook Reader',
@@ -73,8 +73,8 @@ const t = zh
       versionFallback: 'Get latest on GitHub Releases',
       platforms: [
         { name: 'Windows Desktop', hint: 'Windows 10 / 11 (64-bit) · MSI Installer', match: '.msi', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS (Apple Silicon)', hint: 'macOS 12+ · M1/M2/M3/M4 Series · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
-        { name: 'macOS (Intel)', hint: 'macOS 12+ · Intel Processors · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Apple Silicon)', hint: 'macOS 15+ · M1/M2/M3/M4 Series · DMG', match: 'macos-arm64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
+        { name: 'macOS (Intel)', hint: 'macOS 15+ · Intel Processors · DMG', match: 'macos-x86_64.dmg', source: 'desktop', releasesUrl: desktopReleasesUrl },
         { name: 'Android Mobile', hint: 'Android 7.0+ · ARM64 APK (most phones)', match: 'android-arm64-v8a.apk', source: 'mobile', releasesUrl: mobileReleasesUrl },
       ],
       dlBtn: 'Download Now',
@@ -95,10 +95,10 @@ const t = zh
       ],
       notesTitle: 'Installation & Verification Notes',
       notes: [
-        'Windows: SmartScreen may flag the first run. Click "More info" → "Run anyway". Built-in auto-update check with SHA-256 verification.',
+        'Windows: SmartScreen may flag the first run. Click "More info" → "Run anyway". The built-in updater checks GitHub Releases and verifies the installer with SHA-256 before upgrading.',
         'macOS: On first launch, right-click Torto in Finder and select "Open", or allow it under "System Settings → Privacy & Security".',
-        'Integrity: Each release includes a .sha256 checksum file to verify package authenticity.',
-        'Android: The current 0.1 series is an early build. Choose arm64-v8a for most modern devices; older 32-bit builds are available on the mobile Releases page.',
+        'Integrity: macOS DMG releases ship a matching .sha256 checksum file; the Windows MSI is verified automatically by the built-in updater against the GitHub release digest.',
+        'Android: Released on the same cadence as the desktop app. Choose arm64-v8a for most modern devices, armeabi-v7a for older 32-bit phones, and x86_64 for emulators or Intel devices; the About page checks for new versions.',
       ],
       ocrTip: 'After installing, explore the configuration guides for advanced capabilities:',
       ocrLink1: 'OCR Providers (Scanned PDF Reflow)',
@@ -106,7 +106,7 @@ const t = zh
       ocrLink3: 'Focus Mode Guide',
       andText: ', ',
       sentenceEnd: '.',
-      footerCopy: '© {year} Torto · MIT License',
+      footerCopy: '© {year} Torto · AGPL-3.0 License',
     };
 ---
 

@@ -3,7 +3,7 @@ title: Cloud Storage & WebDAV Setup Guide
 description: Configure private WebDAV sync for Torto using cstcloud (Recommended), Nutstore (坚果云), InfiniCLOUD, Koofr, STRATO HiDrive, Yandex Disk, or custom WebDAV servers.
 ---
 
-Torto syncs your book library, reading progress, highlights, and inline notes across desktop and mobile devices via standard **WebDAV**. All data is encrypted and transferred directly between your device and your personal cloud storage, with zero relay through any Torto server.
+Torto syncs your book library, reading progress, highlights, inline notes and reading statistics across desktop and mobile devices via standard **WebDAV**; OCR reflow layouts generated on the desktop for scanned PDFs are synced too, so your phone can keep reading them. All data is encrypted and transferred directly between your device and your personal cloud storage, with zero relay through any Torto server.
 
 The app includes **6 built-in presets** and supports any standard custom WebDAV endpoint.
 

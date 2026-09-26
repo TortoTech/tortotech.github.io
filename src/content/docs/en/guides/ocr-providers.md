@@ -12,6 +12,8 @@ Torto's "PDF OCR & Reflow" feature converts scanned PDF books into reflowable, s
 
 In Torto, open **Settings → OCR** to switch providers and enter your credentials. Tokens are stored securely in your OS vault.
 
+Once recognized, the OCR reflow layout is shared to your Android devices through cloud sync (WebDAV), so your phone can read the reflowed version without re-running recognition.
+
 ---
 
 ## PaddleOCR
